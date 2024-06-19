@@ -37,15 +37,9 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"><a class="nav-link" href="/transaksi/peminjaman">Peminjaman</a></li>
           <li class="nav-item"><a class="nav-link" href="/transaksi/pengembalian">Pengembalian</a></li>
-          <li class="nav-item"><a class="nav-link" href="/transaksi/laporan">Laporan</a></li>
+          {{-- <li class="nav-item"><a class="nav-link" href="/transaksi/laporan">Laporan</a></li> --}}
         </ul>
       </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/data/user">
-        <i class="icon-head menu-icon"></i>
-        <span class="menu-title">user</span>
-      </a>
     </li>
   </ul>
 </nav>

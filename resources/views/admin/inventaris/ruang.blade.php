@@ -11,6 +11,7 @@
                 <p class="card-title">Data Ruang</p>
                 <div class="row">
                     <div class="col-12">
+                        <button type="button" class="btn btn-primary float-right mb-3">tambah</button>
                         <div class="table-responsive">
                             <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> -->
                             <!-- TBL -->

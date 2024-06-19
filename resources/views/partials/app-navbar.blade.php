@@ -10,7 +10,7 @@
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link">
-          <img src="images/faces/face28.jpg" alt="profile" />
+          <img src="images/faces/face12.jpg" alt="profile" />
         </a>
       </li>
       <li class="nav-item nav-settings d-none d-lg-flex">

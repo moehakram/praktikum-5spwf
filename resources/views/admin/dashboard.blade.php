@@ -9,9 +9,7 @@
         <div class="row">
           <div class="col-12">
             <div class="table-responsive">
-              <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> -->
-
-              hallooo
+              APLIKASI INVENTARIS
             </div>
           </div>
         </div>
@@ -22,5 +20,8 @@
 @endsection
 
 @section('script')
-
+<!-- Custom js for this page-->
+<script src="{{ asset('./js/dashboard.js') }}"></script>
+<script src="{{ asset('./js/Chart.roundedBarCharts.js') }}"></script>
+<!-- End custom js for this page-->
 @endsection

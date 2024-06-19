@@ -7,10 +7,11 @@
     </div>
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body ">
                 <p class="card-title">Data Inventaris</p>
                 <div class="row">
                     <div class="col-12">
+                        <button type="button" class="btn btn-primary float-right mb-3">tambah</button>
                         <div class="table-responsive">
                             <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> -->
                             <!-- TBL -->
@@ -36,6 +37,9 @@
                                             Jenis
                                         </th>
                                         <th>
+                                            Tanggal Register
+                                        </th>
+                                        <th>
                                             Ruang
                                         </th>
                                         <th>
@@ -56,6 +60,9 @@
                                         </td>
                                         <td>
                                             Baru
+                                        </td>
+                                        <td>
+                                            -
                                         </td>
                                         <td>
                                             30

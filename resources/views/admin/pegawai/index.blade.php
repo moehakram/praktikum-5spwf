@@ -11,8 +11,9 @@
                 <p class="card-title">Data Pegawai</p>
                 <div class="row">
                     <div class="col-12">
+                        <button type="button" class="btn btn-primary float-right mb-3">tambah</button>
                         <div class="table-responsive">
-                            <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> -->
+                            {{-- <input type="text" class="form-control mb-3" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> --}}
                             <!-- TBL -->
                             <table class="table table-bordered">
                                 <thead>
@@ -43,7 +44,70 @@
                                             1
                                         </td>
                                         <td>
-                                            Akram
+                                            ilyas
+                                        </td>
+                                        <td>
+                                            00103938
+                                        </td>
+                                        <td>
+                                            Perintis 7
+                                        </td>
+                                        <td>
+                                            foto
+                                        </td>
+                                        <td>
+                                        <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
+                                        <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            ilyas
+                                        </td>
+                                        <td>
+                                            00103938
+                                        </td>
+                                        <td>
+                                            Perintis 7
+                                        </td>
+                                        <td>
+                                            foto
+                                        </td>
+                                        <td>
+                                        <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
+                                        <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            ilyas
+                                        </td>
+                                        <td>
+                                            00103938
+                                        </td>
+                                        <td>
+                                            Perintis 7
+                                        </td>
+                                        <td>
+                                            foto
+                                        </td>
+                                        <td>
+                                        <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
+                                        <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>
+                                            Rifki
                                         </td>
                                         <td>
                                             00103938

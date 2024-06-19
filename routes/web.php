@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn() => view('admin.index'));
+Route::get('/', fn() => view('admin.dashboard'));
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -49,10 +49,4 @@ Route::get('/transaksi/pengembalian', function () {
 });
 Route::get('/transaksi/laporan', function () {
     return view('admin.transaksi.laporan');
-});
-Route::get('/data/user', function () {
-    return view('auth.login');
-});
-Route::get('/tentang', function () {
-    return view('auth.login');
 });
