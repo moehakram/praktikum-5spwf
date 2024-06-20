@@ -16,12 +16,12 @@ return new class extends Migration
             $table->bigInteger('inventaris_id');
             $table->string('nama_brg');
             $table->string('nama_peminjam');
-            $table->string('tgl_pinjam');
-            $table->string('tgl_kembali');
+            $table->date('tgl_pinjam');
+            $table->date('tgl_kembali');
             $table->string('jum_kembali');
             $table->string('status');
             $table->string('keterangan');
-            $table->string('pegawai');
+            $table->string('pegawai_id');
             $table->timestamps();
         });
     }

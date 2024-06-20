@@ -16,6 +16,7 @@ class PegawaiSeeder extends Seeder
     {
         $data = [
             [
+                'nip' => '1234567890',
                 'nama' => 'Budi Santoso',
                 'phone_number' => '081234567890',
                 'alamat' => 'Jl. Merpati No. 1',
@@ -23,6 +24,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
+                'nip' => '1234567891',
                 'nama' => 'Ani Suryani',
                 'phone_number' => '081234567891',
                 'alamat' => 'Jl. Kenari No. 2',
@@ -30,6 +32,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
+                'nip' => '1234567892',
                 'nama' => 'Siti Aisyah',
                 'phone_number' => '081234567892',
                 'alamat' => 'Jl. Cendrawasih No. 3',
@@ -37,6 +40,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
+                'nip' => '1234567893',
                 'nama' => 'Agus Wijaya',
                 'phone_number' => '081234567893',
                 'alamat' => 'Jl. Kutilang No. 4',
@@ -44,6 +48,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
+                'nip' => '1234567894',
                 'nama' => 'Rina Hartati',
                 'phone_number' => '081234567894',
                 'alamat' => 'Jl. Jalak No. 5',
@@ -51,6 +56,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
+                'nip' => '1234567895',
                 'nama' => 'Andi Prasetyo',
                 'phone_number' => '081234567895',
                 'alamat' => 'Jl. Rajawali No. 6',
@@ -58,6 +64,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
+                'nip' => '1234567896',
                 'nama' => 'Dewi Lestari',
                 'phone_number' => '081234567896',
                 'alamat' => 'Jl. Elang No. 7',
