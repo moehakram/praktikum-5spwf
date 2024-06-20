@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
   
-    public function index(Request $req)
-    {
-        return view('admin.dashboard');
-    }
-
     public function showLogin()
     {
         return view('auth.login');

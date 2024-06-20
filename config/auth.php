@@ -62,7 +62,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Pegawai::class,
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [

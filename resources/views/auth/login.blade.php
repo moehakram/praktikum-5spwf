@@ -26,20 +26,21 @@
         <div class="row w-100 mx-0">
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-              <div class="brand-logo">
-                  <img src="{{ asset('images/logo-new.png') }}" alt="logo">
+              <div class="brand-logo text-center">
+                  <img class="mb-3" src="{{ asset('images/logo-new.png') }}" alt="logo">
+                  <h4>MAKASSAR</h4>
               </div>
-              <h4>SMK MAKASSAR</h4>
+              
               @error('error')
                   <h6 class="font-weight-light text-danger">{{ $message }}</h6>
               @enderror
-              <form class="pt-3" method="POST" action="{{ route('login') }}">
+              <form class="pt-3" method="POST" action="{{ route('login') }}" autocomplete="off">
                   @csrf
                   <div class="form-group">
-                      <input type="text" name="nip" class="form-control form-control-lg @error('nip') is-invalid @enderror" id="nip" placeholder="NIP" value="{{ old('nip') }}" required autocomplete="nip" autofocus>
+                      <input type="text" autocomplete="off" name="nip" class="form-control form-control-lg" id="nip" placeholder="NIP" required autofocus>
                   </div>
                   <div class="form-group">
-                      <input type="password" name="password" class="form-control form-control-lg @error('password') is-invalid @enderror" id="password" placeholder="Password" required autocomplete="current-password">
+                      <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Password" required>
                   </div>
                   <div class="mt-3">
                       <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
