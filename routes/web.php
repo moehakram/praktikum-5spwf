@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,11 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn() => view('admin.dashboard'));
-
-Route::get('/login', function () {
-    return view('auth.login');
-});
+Route::get('/', [AuthController::class, 'index'])->name('home');
+Route::get('/login', [AuthController::class, 'showLogin']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/logout', function () {
     return view('auth.login');
