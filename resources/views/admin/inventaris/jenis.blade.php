@@ -19,7 +19,7 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            Id Jenis
+                                            NO.
                                         </th>
                                         <th>
                                             Nama Jenis Barang
@@ -33,21 +33,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($jenis as $js)
                                     <tr>
-                                        <td>
-                                            J0001
-                                        </td>
-                                        <td>
-                                            Non-Elektronik
-                                        </td>
-                                        <td>
-                                            -
-                                        </td>
+                                        <td>{{$loop->iteration}}.</td>
+                                        <td>{{$js->nama_jenis}}</td>
+                                        <td>{{$js->keterangan}}</td>
                                         <td>
                                             <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
                                             <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- END-TBL -->

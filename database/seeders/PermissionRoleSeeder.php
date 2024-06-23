@@ -16,7 +16,6 @@ class PermissionRoleSeeder extends Seeder
     {
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'pegawai']);
-        Permission::create(['name' => 'dashboardAccess'])->assignRole('admin');
-        Permission::create(['name' => 'pegawaiAccess'])->assignRole(['admin']);
+        Permission::create(['name' => 'pagePegawai'])->assignRole(['admin']);
     }
 }

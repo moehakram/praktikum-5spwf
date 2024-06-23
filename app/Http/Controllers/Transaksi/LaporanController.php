@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Inventaris;
+namespace App\Http\Controllers\Transaksi;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class LaporanController extends Controller
 {
     function index(){
-        return view('admin.inventaris.laporan');
+
+        return view('admin.transaksi.laporan');
     }
 
     function create(){

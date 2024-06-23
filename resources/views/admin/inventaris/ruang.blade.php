@@ -19,7 +19,7 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            Id Ruang
+                                            NO.
                                         </th>
                                         <th>
                                             Nama Ruang
@@ -33,21 +33,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($ruang as $rg)
                                     <tr>
-                                        <td>
-                                            R001
-                                        </td>
-                                        <td>
-                                            Ruang Elektronik
-                                        </td>
-                                        <td>
-                                            -
-                                        </td>
+                                        <td>{{$loop->iteration}}.</td>
+                                        <td>{{$rg->nama_ruang}}</td>
+                                        <td>{{$rg->keterangan}}</td>
                                         <td>
                                             <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
                                             <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- END-TBL -->

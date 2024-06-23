@@ -13,21 +13,30 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request) {
-        $credentials = $request->validate([
-            'nip' => 'required',
-            'password' => 'required'
+    function login(Request $request) {
+        // Validate the request
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
         ]);
-        if(Auth::attempt($credentials, $request->filled('remember_token'))) {
+    
+        $credentials = $request->only('username', 'password');
+    
+        $loginType = filter_var($credentials['username'], FILTER_VALIDATE_EMAIL) ? 'email' : 'nip';
+        $credentials[$loginType] = $credentials['username'];
+        unset($credentials['username']);
+    
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            $message = 'Welcome ' . Auth::user()->name;
-            return redirect()->route('home')->with('alert', 'success')->with('message', $message);
-        } else {
-            return back()->withInput()->withErrors([
-                'error' => 'NIP atau password Anda salah!.'
-            ]);
+            return redirect()->route('home');
         }
+    
+        return back()->withErrors([
+            'error' => 'Username atau password Anda salah!'
+        ]);
     }
+    
+    
 
     public function logout(Request $request)
     {

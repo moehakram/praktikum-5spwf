@@ -19,7 +19,7 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            Id Inventaris
+                                            NO.
                                         </th>
                                         <th>
                                             Nama
@@ -51,39 +51,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($inventaris as $invent)
                                     <tr>
-                                        <td>
-                                            A011
-                                        </td>
-                                        <td>
-                                            Komputer
-                                        </td>
-                                        <td>
-                                            Baru
-                                        </td>
-                                        <td>
-                                            -
-                                        </td>
-                                        <td>
-                                            30
-                                        </td>
-                                        <td>
-                                            Elektronik
-                                        </td>
-                                        <td>
-                                            12-06-2024
-                                        </td>
-                                        <td>
-                                            Lab Komputer
-                                        </td>
-                                        <td>
-                                            Foto
-                                        </td>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$invent->nama}}</td>
+                                        <td>{{$invent->kondisi}}</td>
+                                        <td>{{$invent->Keterangan}}</td>
+                                        <td>{{$invent->stok}}</td>
+                                        <td>{{$invent->jenis}}</td>
+                                        <td>{{$invent->tgl_register}}</td>
+                                        <td>{{$invent->ruang}}</td>
+                                        <td>{{$invent->foto}}</td>
                                         <td>
                                             <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
                                             <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- END-TBL -->

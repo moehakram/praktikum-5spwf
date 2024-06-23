@@ -15,18 +15,18 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
-    protected $primaryKey = 'nip';
-
-    public $incrementing = false;
-
-    protected $keyType = 'string';
+    protected $primaryKey = 'id';
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
+        'nip',
         'name',
+        'email',
+        'phone_number',
+        'alamat',
         'password'
     ];
 

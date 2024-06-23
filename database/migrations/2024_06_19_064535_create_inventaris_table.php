@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('inventaris', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('kondisi');
+            $table->string('nama')->nullable(false);
+            $table->string('kondisi')->nullable(false);
             $table->string('keterangan')->nullable();
-            $table->string('stok');
-            $table->string('jenis');
+            $table->string('stok')->nullable();
+            $table->string('jenis')->nullable(false);
             $table->date('tgl_register');
-            $table->string('ruang');
-            $table->string('foto');
+            $table->string('ruang')->nullable(false);
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

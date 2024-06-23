@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Inventaris;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inventaris;
 use Illuminate\Http\Request;
 
 class InventarisController extends Controller
 {
     function index(){
-        return view('admin.inventaris.inventaris');
+        $inventaris = Inventaris::all();
+        return view('admin.inventaris.inventaris', compact('inventaris'));
     }
 
     function create(){

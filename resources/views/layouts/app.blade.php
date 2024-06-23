@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('./css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('./images/logo-new.png') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
 </head>
 
 <body>
@@ -60,8 +61,29 @@
 <script src="{{ asset('./js/hoverable-collapse.js') }}"></script>
 <script src="{{ asset('./js/template.js') }}"></script>
 <!-- endinject -->
-
 @yield('script')
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session()->has('alert'))
+    <script>
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+          });
+          Toast.fire({
+            icon: "{{ session('alert')}}",
+            title: "{{ session('message')}}"
+          });
+    </script>
+@endif
 
 </body>
 

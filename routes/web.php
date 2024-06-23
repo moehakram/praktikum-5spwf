@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Inventaris\InventarisController;
 use App\Http\Controllers\Inventaris\JenisController;
+use App\Http\Controllers\Transaksi\LaporanController;
 use App\Http\Controllers\Inventaris\RuangController;
 use App\Http\Controllers\Transaksi\PeminjamanController;
 use App\Http\Controllers\Transaksi\PengembalianController;
@@ -11,22 +12,23 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/login', [AuthController::class, 'showLogin']);
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/', [DashboardController::class, 'index'])->name('home');
+Route::get('/home', fn()=> redirect('/'));
 
-Route::get('/pegawai', [UserController::class, 'index']);
+Route::controller(AuthController::class)->group(function(){
+    Route::get('/login', 'showLogin')->middleware('guest');
+    Route::post('/login', 'login')->name('login')->middleware('guest');
+    Route::get('/logout', 'logout')->name('logout');
+});
 
-Route::middleware('auth')->group(function () {
+
+Route::middleware(['auth', 'permission:pagePegawai'])->group(function () {
     Route::get('pegawai', [UserController::class, 'index'])->name('pegawai.index');
     Route::get('pegawai/create', [UserController::class, 'create'])->name('pegawai.create');
     Route::post('pegawai', [UserController::class, 'store'])->name('pegawai.store');
-    Route::get('pegawai/{id}/edit', [UserController::class, 'edit'])->name('pegawai.edit');
-    Route::put('pegawai/{id}', [UserController::class, 'update'])->name('pegawai.update');
-    Route::delete('pegawai/{id}', [UserController::class, 'destroy'])->name('pegawai.destroy');
-
-    Route::get('/tes', [UserController::class, 'tes'])->name('tes');
+    Route::get('pegawai/{nip}/edit', [UserController::class, 'edit'])->name('pegawai.edit');
+    Route::put('pegawai/{nip}', [UserController::class, 'update'])->name('pegawai.update');
+    Route::get('pegawai/{id}/hapus', [UserController::class, 'destroy'])->name('pegawai.destroy');
 });
 
 Route::middleware('auth')->group(function () {
@@ -56,14 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('ruang/{id}', [RuangController::class, 'destroy'])->name('ruang.destroy');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('laporan', [JenisController::class, 'index'])->name('laporan.index');
-    Route::get('laporan/create', [JenisController::class, 'create'])->name('laporan.create');
-    Route::post('laporan', [JenisController::class, 'store'])->name('laporan.store');
-    Route::get('laporan/{id}/edit', [JenisController::class, 'edit'])->name('laporan.edit');
-    Route::put('laporan/{id}', [JenisController::class, 'update'])->name('laporan.update');
-    Route::delete('laporan/{id}', [JenisController::class, 'destroy'])->name('laporan.destroy');
-});
+Route::get('laporan', [LaporanController::class, 'index'])->name('laporan')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
@@ -82,7 +77,3 @@ Route::middleware('auth')->group(function () {
     Route::put('pengembalian/{id}', [PengembalianController::class, 'update'])->name('pengembalian.update');
     Route::delete('pengembalian/{id}', [PengembalianController::class, 'destroy'])->name('pengembalian.destroy');
 });
-
-Route::get('/inventaris/laporan', function () {
-    return view('admin.transaksi.laporan');
-})->name('laporan.index');

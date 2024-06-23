@@ -11,21 +11,24 @@
                 <p class="card-title">Data Pegawai</p>
                 <div class="row">
                     <div class="col-12">
-                        <button type="button" class="btn btn-primary float-right mb-3">tambah</button>
+                        <a type="button" href="{{route('pegawai.create')}}" class="btn btn-primary float-right mb-3">tambah</a>
                         <div class="table-responsive">
                             {{-- <input type="text" class="form-control mb-3" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> --}}
                             <!-- TBL -->
                             <table class="table table-bordered">
                                 <thead>
-                                    <tr>
-                                        <th>
-                                            NO.
-                                        </th>
+                                    <tr><th>
+                                        NIP
+                                    </th>
                                         <th>
                                             NAME
                                         </th>
+                                        
                                         <th>
-                                            NIP
+                                            EMAIL
+                                        </th>
+                                        <th>
+                                            Telepon
                                         </th>
                                         <th>
                                             ALAMAT
@@ -39,90 +42,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($users as $user)
                                     <tr>
+                                        <td>{{ $user->nip }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->phone_number }}</td>
+                                        <td>{{ $user->alamat }}</td>
                                         <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            ilyas
-                                        </td>
-                                        <td>
-                                            00103938
-                                        </td>
-                                        <td>
-                                            Perintis 7
-                                        </td>
-                                        <td>
-                                            foto
-                                        </td>
-                                        <td>
-                                        <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
-                                        <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
+                                            <a type="button" href="{{route('pegawai.edit', $user->nip )}}" class="btn btn-info btn-rounded btn-fw">Ubah</a>
+                                            <a type="button" href="{{route('pegawai.destroy', $user->id )}}" class="btn btn-danger btn-rounded btn-fw">Hapus</a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            ilyas
-                                        </td>
-                                        <td>
-                                            00103938
-                                        </td>
-                                        <td>
-                                            Perintis 7
-                                        </td>
-                                        <td>
-                                            foto
-                                        </td>
-                                        <td>
-                                        <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
-                                        <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            ilyas
-                                        </td>
-                                        <td>
-                                            00103938
-                                        </td>
-                                        <td>
-                                            Perintis 7
-                                        </td>
-                                        <td>
-                                            foto
-                                        </td>
-                                        <td>
-                                        <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
-                                        <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            2
-                                        </td>
-                                        <td>
-                                            Rifki
-                                        </td>
-                                        <td>
-                                            00103938
-                                        </td>
-                                        <td>
-                                            Perintis 7
-                                        </td>
-                                        <td>
-                                            foto
-                                        </td>
-                                        <td>
-                                        <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
-                                        <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- END-TBL -->
