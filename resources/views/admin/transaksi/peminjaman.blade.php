@@ -11,7 +11,7 @@
                 <p class="card-title">Data Peminjaman</p>
                 <div class="row">
                     <div class="col-12">
-                        <button type="button" class="btn btn-primary float-right mb-3">tambah</button>
+                        <a href="{{route('peminjaman.create')}}" class="btn btn-primary float-right mb-3">tambah</a>
                         <div class="table-responsive">
                             <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> -->
                             <!-- TBL -->
@@ -31,13 +31,7 @@
                                             Tanggal Pinjam
                                         </th>
                                         <th>
-                                            Tanggal Kembali
-                                        </th>
-                                        <th>
                                             Jumlah Pinjam
-                                        </th>
-                                        <th>
-                                            Status
                                         </th>
                                         <th>
                                             Keterangan
@@ -51,39 +45,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($peminjamans as $peminjaman)
                                     <tr>
                                         <td>
-                                            A011
+                                            {{$peminjaman->inventaris->id}}
                                         </td>
                                         <td>
-                                            Komputer
+                                            {{$peminjaman->inventaris->nama}}
                                         </td>
                                         <td>
-                                            Pahri
+                                            {{$peminjaman->nama_peminjam}}
                                         </td>
                                         <td>
-                                            12-06-2024
+                                            {{$peminjaman->tgl_pinjam}}
                                         </td>
                                         <td>
-                                            20-06-2024
+                                            {{$peminjaman->jum_pinjam}}
                                         </td>
                                         <td>
-                                            5
+                                            {{$peminjaman->keterangan}}
                                         </td>
                                         <td>
-                                            Sedang Melakukan Peminjaman
+                                            {{$peminjaman->pegawai->name}}
                                         </td>
                                         <td>
-                                            Kegiatan Pembelajaran
-                                        </td>
-                                        <td>
-                                            Akram, S.Kom
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
-                                            <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
+                                            <a href="{{route('peminjaman.edit', $peminjaman->id)}}" class="btn btn-info btn-rounded btn-fw">Ubah</a>
+                                            <a href="{{route('peminjaman.destroy', $peminjaman->id)}}" class="btn btn-danger btn-rounded btn-fw">Hapus</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <!-- END-TBL -->

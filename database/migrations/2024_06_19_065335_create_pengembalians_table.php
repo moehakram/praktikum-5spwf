@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('pengembalian', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('inventaris_id');
-            $table->string('nama_brg');
-            $table->string('nama_peminjam');
-            $table->date('tgl_pinjam');
+            $table->unsignedBigInteger('peminjaman_id');
             $table->date('tgl_kembali');
-            $table->string('jum_kembali');
-            $table->string('status');
-            $table->string('keterangan');
-            $table->string('pegawai_id');
+            $table->integer('jum_kembali');
+            $table->string('keterangan')->nullable();
+            $table->unsignedBigInteger('pegawai_id');
             $table->timestamps();
+        
+            // Foreign key constraints
+            $table->foreign('peminjaman_id')->references('id')->on('peminjaman')->onDelete('cascade');
+            $table->foreign('pegawai_id')->references('id')->on('pegawai')->onDelete('cascade');
         });
     }
 

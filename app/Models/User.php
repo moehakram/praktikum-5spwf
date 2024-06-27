@@ -11,24 +11,20 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles;
 
-    protected $table = 'users';
-
+    protected $table = 'pegawai';
     protected $primaryKey = 'id';
+    protected $keyType = 'int';
+    public $timestamps = true;
+    public $incrementing = true;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'nip',
-        'name',
-        'email',
-        'phone_number',
-        'alamat',
-        'password'
-    ];
+
+     protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,7 +41,19 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
+
+      // Relasi ke model Peminjaman
+      public function peminjaman()
+      {
+          return $this->hasMany(Peminjaman::class, 'pegawai_id');
+      }
+  
+      // Relasi ke model Pengembalian
+      public function pengembalian()
+      {
+          return $this->hasMany(Pengembalian::class, 'pegawai_id');
+      }
 }

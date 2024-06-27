@@ -11,7 +11,7 @@
                 <p class="card-title">Data Pengembalian</p>
                 <div class="row">
                     <div class="col-12">
-                        <button type="button" class="btn btn-primary float-right mb-3">tambah</button>
+                        <a href="{{route('pengembalian.create')}}" class="btn btn-primary float-right mb-3">tambah</a>
                         <div class="table-responsive">
                             <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> -->
                             <!-- TBL -->
@@ -28,16 +28,10 @@
                                             Nama Peminjam
                                         </th>
                                         <th>
-                                            Tanggal Pinjam
-                                        </th>
-                                        <th>
                                             Tanggal Kembali
                                         </th>
                                         <th>
                                             Jumlah Kembali
-                                        </th>
-                                        <th>
-                                            Status
                                         </th>
                                         <th>
                                             Keterangan
@@ -51,39 +45,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($pengembalians as $pengembalian)
                                     <tr>
                                         <td>
-                                            A011
+                                            {{$pengembalian->peminjaman->inventaris_id}}
                                         </td>
                                         <td>
-                                            Komputer
+                                            {{$pengembalian->peminjaman->inventaris->nama}}
                                         </td>
                                         <td>
-                                            Pahri
+                                            {{$pengembalian->peminjaman->nama_peminjam}}
+                                        </td>
                                         </td>
                                         <td>
-                                            12-06-2024
+                                            {{$pengembalian->tgl_kembali}}
                                         </td>
                                         <td>
-                                            20-06-2024
+                                            {{$pengembalian->jum_kembali}}
                                         </td>
                                         <td>
-                                            5
+                                            {{$pengembalian->keterangan}}
                                         </td>
                                         <td>
-                                            Telah Dikembalikan
+                                            {{$pengembalian->pegawai->name}}
                                         </td>
                                         <td>
-                                            Barang baik, kembali tidak tepat waktu
-                                        </td>
-                                        <td>
-                                            Akram, S.Kom
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
-                                            <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
+                                            <a href="{{route('pengembalian.edit', $pengembalian->id)}}" class="btn btn-info btn-rounded btn-fw">Ubah</a>
+                                            <a href="{{route('pengembalian.destroy', $pengembalian->id)}}" class="btn btn-danger btn-rounded btn-fw">Hapus</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             

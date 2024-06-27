@@ -22,10 +22,9 @@ class DatabaseSeeder extends Seeder
             PermissionRoleSeeder::class,
             UsersTableSeeder::class,
             InventarisSeeder::class,
+            // PeminjamanSeeder::class,
+            // PengembalianSeeder::class,
             JenisSeeder::class,
-            LaporanSeeder::class,
-            PeminjamanSeeder::class,
-            PengembalianSeeder::class,
             RuangSeeder::class
         ]);
     }

@@ -14,26 +14,52 @@ class RuangController extends Controller
     }
 
     function create(){
-        //
+        return response()->view('admin.inventaris.create-ruang');
+    } 
+
+    function store(Request $request){
+        $request->validate([
+            'nama_ruang' => ['required', 'max:20'],
+            'keterangan' => ['nullable', 'max:50']
+        ]);
+
+        Ruang::create([
+            'nama_ruang' => $request->nama_ruang,
+            'keterangan' => $request->keterangan
+        ]);
+
+        return redirect()->route('ruang.index')->with('alert', 'success')->with('message', 'Berhasil menambahkan ruang inventaris');
+
     }
 
-    function store(){
-        //
+    function edit($id)
+    {
+        $ruang = Ruang::where('id', $id)->first();
+        return view('admin.inventaris.edit-ruang', compact('ruang'));
     }
 
-    function edit(){
+    function update($id, Request $request)
+    {
+        $request->validate([
+            'nama_ruang' => ['required', 'max:20'],
+            'keterangan' => ['nullable', 'max:50']
+        ]);
 
-    }
+        $ruang = Ruang::where('id', $id)->first();
+        $ruang->nama_ruang = $request->nama_ruang;
 
-    function update(){
+        if($keterangan = $request->keterangan){
+            $ruang->keterangan = $keterangan;
+        }
 
-    }
+        $ruang->update();
 
-    function delete(){
+        return redirect()->route('ruang.index')->with('alert', 'success')->with('message', 'Berhasil mengedit ruang inventaris');
+       }
 
-    }
-
-    function destroy(){
-
+    function destroy($id){
+        Ruang::find($id)->delete();
+        return redirect()->route('ruang.index')
+        ->with('alert', 'success')->with('message', 'Berhasil hapus ruang inventaris');
     }
 }

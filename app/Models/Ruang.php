@@ -10,4 +10,10 @@ class Ruang extends Model
     use HasFactory;
 
     protected $table = 'ruang';
+    protected $primaryKey = 'id';
+    protected $keyType = 'int';
+    public $timestamps = true;
+    public $incrementing = true;
+
+    protected $guarded = ['id'];
 }

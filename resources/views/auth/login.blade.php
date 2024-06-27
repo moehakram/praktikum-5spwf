@@ -37,7 +37,7 @@
               <form class="pt-3" method="POST" action="{{ route('login') }}" autocomplete="off">
                   @csrf
                   <div class="form-group">
-                      <input type="text" autocomplete="off" name="username" class="form-control form-control-lg" id="username" placeholder="NIP or email" required autofocus>
+                      <input type="text" autocomplete="off" name="username" class="form-control form-control-lg" id="username" placeholder="username" required autofocus>
                   </div>
                   <div class="form-group">
                       <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Password" required>

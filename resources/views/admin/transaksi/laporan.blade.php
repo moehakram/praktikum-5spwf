@@ -18,10 +18,7 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            Id Transaksi
-                                        </th>
-                                        <th>
-                                            Id Inventaris
+                                            NO.
                                         </th>
                                         <th>
                                             Nama Barang
@@ -42,59 +39,43 @@
                                             Jumlah Kembali
                                         </th>
                                         <th>
-                                            Status
-                                        </th>
-                                        <th>
-                                            Keterangan
-                                        </th>
-                                        <th>
-                                            Pegawai
-                                        </th>
-                                        <th>
-                                            Aksi
+                                            status
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($peminjaman as $item)
                                     <tr>
                                         <td>
-                                            T001
+                                            {{$loop->iteration}}
                                         </td>
                                         <td>
-                                            A011
+                                            {{$item->inventaris->nama}}
                                         </td>
                                         <td>
-                                            Komputer
+                                            {{$item->nama_peminjam}}
                                         </td>
                                         <td>
-                                            Pahri
+                                            {{$item->tgl_pinjam}}
                                         </td>
                                         <td>
-                                            12-06-2024
+                                            {{$item->pengembalian->tgl_kembali ?? 'none'}}
                                         </td>
                                         <td>
-                                            20-06-2024
+                                            {{$item->jum_pinjam}}
                                         </td>
                                         <td>
-                                            5
+                                            {{$item->pengembalian->jum_kembali ?? 'none'}}
                                         </td>
                                         <td>
-                                            5
-                                        </td>
-                                        <td>
-                                            Telah Dikembalikan
-                                        </td>
-                                        <td>
-                                            Kegiatan Pembelajaran
-                                        </td>
-                                        <td>
-                                            Akram, S.Kom
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
-                                            <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
+                                            @if ($item->status === 0)
+                                                {{'Sudah dikembalikan'}}
+                                            @else
+                                            {{'Belum dikembalikan'}}
+                                            @endif
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             

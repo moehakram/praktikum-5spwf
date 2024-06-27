@@ -4,6 +4,7 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="/viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ $title ?? 'APLIKASI INVENTARIS' }}</title>
     <!-- plugins:css -->
@@ -21,6 +22,7 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('./images/logo-new.png') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    @yield('style')
 </head>
 
 <body>
@@ -60,8 +62,10 @@
 <script src="{{ asset('./js/off-canvas.js') }}"></script>
 <script src="{{ asset('./js/hoverable-collapse.js') }}"></script>
 <script src="{{ asset('./js/template.js') }}"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 <!-- endinject -->
 @yield('script')
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

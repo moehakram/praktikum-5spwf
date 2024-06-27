@@ -13,16 +13,18 @@ return new class extends Migration
     {
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('inventaris_id');
-            $table->string('nama_brg');
+            $table->unsignedBigInteger('inventaris_id');
             $table->string('nama_peminjam');
             $table->date('tgl_pinjam');
-            $table->date('tgl_kembali');
-            $table->string('jum_pinjam');
-            $table->string('status');
-            $table->string('keterangan');
-            $table->string('pegawai_id');
+            $table->integer('jum_pinjam');
+            $table->boolean('status')->default(1);
+            $table->string('keterangan')->nullable();
+            $table->unsignedBigInteger('pegawai_id');
             $table->timestamps();
+        
+            // Foreign key constraints
+            $table->foreign('inventaris_id')->references('id')->on('inventaris')->onDelete('cascade');
+            $table->foreign('pegawai_id')->references('id')->on('pegawai')->onDelete('cascade');
         });
     }
 
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('peminjamen');
+        Schema::dropIfExists('peminjaman');
     }
 };

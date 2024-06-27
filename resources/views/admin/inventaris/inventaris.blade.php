@@ -1,6 +1,42 @@
 @extends('layouts.app')
 
+@section('style')
+    <style>
+        #modalOverlay {
+            display: none;
+            position: fixed;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        #modalContent {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        #fullSizeImage {
+            max-width: 70%;
+            max-height: 70%;
+        }
+    </style>
+@endsection
+
 @section('content')
+
+<div id="modalOverlay">
+    <div id="modalContent">
+        <img id="fullSizeImage">
+    </div>
+</div>
+
 <div class="row">
     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
         <h3 class="font-weight-bold">INVENTARIS</h3>
@@ -11,7 +47,7 @@
                 <p class="card-title">Data Inventaris</p>
                 <div class="row">
                     <div class="col-12">
-                        <button type="button" class="btn btn-primary float-right mb-3">tambah</button>
+                        <a type="button" href="{{route('inventaris.create')}}" class="btn btn-primary float-right mb-3">tambah</a>
                         <div class="table-responsive">
                             <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> -->
                             <!-- TBL -->
@@ -56,15 +92,15 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$invent->nama}}</td>
                                         <td>{{$invent->kondisi}}</td>
-                                        <td>{{$invent->Keterangan}}</td>
+                                        <td>{{$invent->keterangan}}</td>
                                         <td>{{$invent->stok}}</td>
                                         <td>{{$invent->jenis}}</td>
-                                        <td>{{$invent->tgl_register}}</td>
+                                        <td>{{$invent->created_at}}</td>
                                         <td>{{$invent->ruang}}</td>
-                                        <td>{{$invent->foto}}</td>
+                                        <td><img class="thumbnail" data-fullsize="{{url('/images/inventaris-barang/' .$invent->foto)}}" style="width: 50px; cursor: pointer;" src="{{url('/images/inventaris-barang/' .$invent->foto)}}" alt=""></td>
                                         <td>
-                                            <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
-                                            <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
+                                            <a href="{{route('inventaris.edit', $invent->id)}}"  class="btn btn-info btn-rounded btn-fw">Ubah</a>
+                                            <a href="{{route('inventaris.destroy', $invent->id)}}" class="btn btn-danger btn-rounded btn-fw">Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -81,5 +117,27 @@
 @endsection
 
 @section('script')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const thumbnails = document.querySelectorAll(".thumbnail");
+        const modalOverlay = document.getElementById("modalOverlay");
+        const fullSizeImage = document.getElementById("fullSizeImage");
 
+        thumbnails.forEach(function(thumbnail) {
+            thumbnail.addEventListener("click", function() {
+                const fullsize = this.getAttribute("data-fullsize");
+                fullSizeImage.src = fullsize;
+                modalOverlay.style.display = "block";
+            });
+        });
+
+        modalOverlay.addEventListener("click", function() {
+            modalOverlay.style.display = "none";
+        });
+
+        modalContent.addEventListener("click", function(event) {
+            event.stopPropagation();
+        });
+    });
+</script>
 @endsection

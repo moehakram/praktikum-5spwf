@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-        <h3 class="font-weight-bold">JENIS</h3>
+        <h3 class="font-weight-bold">JENIS INVENTARIS</h3>
     </div>
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
@@ -11,7 +11,7 @@
                 <p class="card-title">Data Jenis</p>
                 <div class="row">
                     <div class="col-12">
-                        <button type="button" class="btn btn-primary float-right mb-3">tambah</button>                    
+                        <a href="{{route('jenis.create')}}" class="btn btn-primary float-right mb-3">tambah</a>                    
                         <div class="table-responsive">
                             <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> -->
                             <!-- TBL -->
@@ -33,14 +33,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($jenis as $js)
+                                    @foreach($jenis as $item)
                                     <tr>
                                         <td>{{$loop->iteration}}.</td>
-                                        <td>{{$js->nama_jenis}}</td>
-                                        <td>{{$js->keterangan}}</td>
+                                        <td>{{$item->nama_jenis}}</td>
+                                        <td>{{$item->keterangan}}</td>
                                         <td>
-                                            <button type="button" class="btn btn-info btn-rounded btn-fw">Ubah</button>
-                                            <button type="button" class="btn btn-danger btn-rounded btn-fw">Hapus</button>
+                                            <a href="{{route('jenis.edit', $item->id)}}" class="btn btn-info btn-rounded btn-fw">Ubah</a>
+                                            <a href="{{route('jenis.destroy', $item->id)}}" class="btn btn-danger btn-rounded btn-fw">Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach

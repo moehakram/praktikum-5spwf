@@ -7,20 +7,33 @@
     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
       <span class="icon-menu"></span>
     </button>
+
+
+    {{-- awal  --}}
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item nav-profile dropdown">
-        <a class="nav-link">
-          <img src="{{asset('images/faces/face12.jpg')}}" alt="profile" />
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+          <img src="images/faces/face28.jpg" alt="profile"/>
         </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+          <a class="dropdown-item" href="{{route('profile')}}">
+            <i class="ti-user text-primary"></i>
+            update profile
+          </a>
+          <a class="dropdown-item" href="{{route('password')}}">
+            <i class="ti-settings text-primary"></i>
+            update password
+          </a>
+        </div>
       </li>
       <li class="nav-item nav-settings d-none d-lg-flex">
-        <a class="dropdown-item" href="/logout">
+        <a class="nav-link" href="{{route('logout')}}">
           <i class="ti-power-off text-primary"></i>
-          Logout
-        </a>
+          logout
         </a>
       </li>
     </ul>
+    {{-- awal  --}}
     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
       <span class="icon-menu"></span>
     </button>

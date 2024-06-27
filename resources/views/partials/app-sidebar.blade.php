@@ -15,7 +15,7 @@
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{{route('inventaris.index')}}">Inventaris</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{route('jenis.index')}}">Jenis</a></li>
+          {{-- <li class="nav-item"> <a class="nav-link" href="{{route('jenis.index')}}">Jenis</a></li> --}}
           <li class="nav-item"> <a class="nav-link" href="{{route('ruang.index')}}">Ruang</a></li>
         </ul>
       </div>

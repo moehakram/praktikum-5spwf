@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('nama')->nullable(false);
             $table->string('kondisi')->nullable(false);
             $table->string('keterangan')->nullable();
-            $table->string('stok')->nullable();
+            $table->integer('stok')->nullable(); // Mengubah stok menjadi integer
             $table->string('jenis')->nullable(false);
-            $table->date('tgl_register');
             $table->string('ruang')->nullable(false);
+            $table->boolean('status')->default(0);
             $table->string('foto')->nullable();
             $table->timestamps();
         });

@@ -3,35 +3,98 @@
 namespace App\Http\Controllers\Transaksi;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreatePeminjamanRequest;
+use App\Http\Requests\UpdatePeminjamanRequest;
+use App\Models\Inventaris;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PeminjamanController extends Controller
 {
     function index(){
-        return view('admin.transaksi.peminjaman');
+        $peminjamans = Peminjaman::with(['inventaris', 'pegawai'])->where('status', 1)->get();
+        return view('admin.transaksi.peminjaman', compact('peminjamans'));
     }
 
-    function create(){
-        //
+    // function index(){
+    //     $data = [
+    //         'peminjaman' => Peminjaman::with(['inventaris', 'pegawai'])
+    //             ->where('pegawai.id', Auth::id())
+    //             ->all(),
+    //         'inventaris' => Inventaris::all(['id', 'nama'])
+    //     ];
+    //     return view('admin.transaksi.peminjaman', compact('peminjamans'));
+    // }
+
+    function create()
+    {
+        $inventaris = Inventaris::where('status', '0')->get(['id', 'nama']);
+        return view('admin.transaksi.create-peminjaman', compact('inventaris'));
     }
 
-    function store(){
-        //
+    function store(CreatePeminjamanRequest $request)
+    {
+        $peminjaman = Peminjaman::create([
+            'nama_peminjam' => $request->nama_peminjam,
+            'inventaris_id' => $request->inventaris_id,
+            'tgl_pinjam' => $request->tgl_pinjam,
+            'jum_pinjam' => $request->jum_pinjam,
+            'status' => 1,
+            'keterangan' => $request->keterangan,
+            'pegawai_id' => Auth::id()
+        ]);
+
+        $peminjaman->inventaris->status = 1;
+        $peminjaman->inventaris->update();
+
+        return redirect()->route('peminjaman.index')->with('alert', 'success')->with('message', 'Berhasil menambahkan peminjam inventaris');
     }
 
-    function edit(){
-
+    function edit($id)
+    {
+        $data = [
+            'peminjaman' => Peminjaman::with(['inventaris', 'pegawai'])
+                ->where('id', $id)
+                ->select('id', 'nama_peminjam', 'tgl_pinjam', 'jum_pinjam', 'status', 'keterangan', 'inventaris_id')
+                ->first(),
+            'inventaris' => Inventaris::all(['id', 'nama'])
+        ];
+        
+        return view('admin.transaksi.edit-peminjaman', $data);
     }
 
-    function update(){
+    function update(UpdatePeminjamanRequest $request, $id)
+    {
 
-    }
+        $peminjaman = Peminjaman::where('id', $id)->first();
+        $data = [
+            'nama_peminjam' => $request->nama_peminjam,
+            'inventaris_id' => $request->inventaris_id,
+            'tgl_pinjam' => $request->tgl_pinjam,
+            'jum_pinjam' => $request->jum_pinjam,
+            'status' => 1,
+            'keterangan' => $request->keterangan,
+            'pegawai_id' => Auth::id()
+        ];
+        
+        foreach($data as $index => $value){
+            if($value !== null){
+                $peminjaman->$index = $value;
+            }
+        }
 
-    function delete(){
+        $peminjaman->update();
 
-    }
+        return redirect()->route('peminjaman.index')->with('alert', 'success')->with('message', 'Berhasil mengedit peminjaman inventaris');
+       }
 
-    function destroy(){
-
+    function destroy($id){
+        $peminjaman = Peminjaman::find($id);
+        $peminjaman->inventaris->status = 0;
+        $peminjaman->inventaris->save();
+        $peminjaman->delete();
+        return redirect()->route('peminjaman.index')
+        ->with('alert', 'success')->with('message', 'Berhasil hapus peminjaman inventaris');
     }
 }

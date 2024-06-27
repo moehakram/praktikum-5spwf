@@ -14,26 +14,54 @@ class JenisController extends Controller
     }
 
     function create(){
-        //
+        return response()->view('admin.inventaris.create-jenis');
+    } 
+
+    function store(Request $request){
+        $request->validate([
+            'nama_jenis' => ['required', 'max:20'],
+            'keterangan' => ['nullable', 'max:50']
+        ]);
+
+        Jenis::create([
+            'nama_jenis' => $request->nama_jenis,
+            'keterangan' => $request->keterangan
+        ]);
+
+        return redirect()->route('jenis.index')->with('alert', 'success')->with('message', 'Berhasil menambahkan jenis inventaris');
+
     }
 
-    function store(){
-        //
+    function edit($id)
+    {
+        $jenis = Jenis::where('id', $id)->first();
+        return view('admin.inventaris.edit-jenis', compact('jenis'));
     }
 
-    function edit(){
+    function update($id, Request $request)
+    {
+        // dd($request);
+        $request->validate([
+            'nama_jenis' => ['required', 'max:20'],
+            'keterangan' => ['nullable', 'max:50']
+        ]);
 
-    }
+        $jenis = Jenis::where('id', $id)->first();
+        $jenis->nama_jenis = $request->nama_jenis;
 
-    function update(){
+        if($keterangan = $request->keterangan){
+            $jenis->keterangan = $keterangan;
+        }
 
-    }
+        $jenis->update();
 
-    function delete(){
+        return redirect()->route('jenis.index')->with('alert', 'success')->with('message', 'Berhasil mengedit jenis inventaris');
+       }
 
-    }
+    function destroy($id){
+        Jenis::find($id)->delete();
 
-    function destroy(){
-
+        return redirect()->route('jenis.index')
+        ->with('alert', 'success')->with('message', 'Berhasil hapus jenis inventaris');
     }
 }

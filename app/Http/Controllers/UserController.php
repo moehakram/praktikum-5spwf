@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePegawaiRequest;
 use App\Http\Requests\PegawaiUpdateRequest;
-use App\Http\Requests\RequestPegawai;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -14,7 +14,8 @@ class UserController extends Controller
     private $password_default = 'password123';
 
     function index(){
-        $users = User::all();
+        $currentUserId = Auth::id();
+        $users = User::where('id', '!=', $currentUserId)->get();
         return view('admin.pegawai.index', compact('users'));
     }
 
@@ -24,8 +25,7 @@ class UserController extends Controller
         ]);
     }
 
-    function store(RequestPegawai $request){
-        $data = $request->validated();
+    function store(CreatePegawaiRequest $data){
 
         $user = new User([
             'nip' => $data['nip'],
@@ -47,9 +47,8 @@ class UserController extends Controller
         return view('admin.pegawai.edit', $data);
     }
 
-    function update(PegawaiUpdateRequest $request, $nip)
+    function update(PegawaiUpdateRequest $data, $nip)
     {
-        $data = $request->validated();
 
         $user = User::where('nip', $nip)->first();
 

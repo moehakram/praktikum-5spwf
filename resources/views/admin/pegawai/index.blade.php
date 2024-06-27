@@ -34,9 +34,6 @@
                                             ALAMAT
                                         </th>
                                         <th>
-                                            FOTO
-                                        </th>
-                                        <th>
                                             AKSI
                                         </th>
                                     </tr>
