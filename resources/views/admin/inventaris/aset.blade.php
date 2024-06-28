@@ -44,18 +44,21 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body ">
-                <p class="card-title">Data Inventaris</p>
+                <p class="card-title">Data Aset</p>
                 <div class="row">
                     <div class="col-12">
                         <a type="button" href="{{route('inventaris.create')}}" class="btn btn-primary float-right mb-3">tambah</a>
                         <div class="table-responsive">
                             <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> -->
                             <!-- TBL -->
-                            <table class="table table-bordered">
+                            <table id="dataAset" class="table table-bordered display">
                                 <thead>
                                     <tr>
-                                        <th>
+                                        {{-- <th>
                                             NO.
+                                        </th> --}}
+                                        <th>
+                                            Kode Aset
                                         </th>
                                         <th>
                                             Nama
@@ -70,13 +73,13 @@
                                             Stok
                                         </th>
                                         <th>
-                                            Jenis
+                                            Kategori
                                         </th>
                                         <th>
                                             Tanggal Register
                                         </th>
                                         <th>
-                                            Ruang
+                                            Gudang
                                         </th>
                                         <th>
                                             Foto
@@ -87,9 +90,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($inventaris as $invent)
+                                    @foreach($aset as $invent)
                                     <tr>
-                                        <td>{{$loop->iteration}}</td>
+                                        {{-- <td>{{$loop->iteration}}</td> --}}
+                                        <td>{{$invent->id}}</td>
                                         <td>{{$invent->nama}}</td>
                                         <td>{{$invent->kondisi}}</td>
                                         <td>{{$invent->keterangan}}</td>
@@ -97,10 +101,10 @@
                                         <td>{{$invent->jenis}}</td>
                                         <td>{{$invent->created_at}}</td>
                                         <td>{{$invent->ruang}}</td>
-                                        <td><img class="thumbnail" data-fullsize="{{url('/images/inventaris-barang/' .$invent->foto)}}" style="width: 50px; cursor: pointer;" src="{{url('/images/inventaris-barang/' .$invent->foto)}}" alt=""></td>
+                                        <td><img class="thumbnail" data-fullsize="{{url('aset-inventaris/' .$invent->foto)}}" style="width: 50px; cursor: pointer;" src="{{url('aset-inventaris/' .$invent->foto)}}" alt=""></td>
                                         <td>
-                                            <a href="{{route('inventaris.edit', $invent->id)}}"  class="btn btn-info btn-rounded btn-fw">Ubah</a>
-                                            <a href="{{route('inventaris.destroy', $invent->id)}}" class="btn btn-danger btn-rounded btn-fw">Hapus</a>
+                                            <a href="{{route('inventaris.edit', $invent->id)}}"  class="btn btn-info btn-rounded btn-icon-text"><i class="ti-pencil btn-icon-prepend"></i>ubah</a>
+                                            <a href="{{route('inventaris.destroy', $invent->id)}}" class="btn btn-danger btn-rounded btn-icon-text"><i class="ti-trash btn-icon-prepend"></i>Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -119,6 +123,9 @@
 @section('script')
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+    	
+        $('#dataAset').DataTable();
+        
         const thumbnails = document.querySelectorAll(".thumbnail");
         const modalOverlay = document.getElementById("modalOverlay");
         const fullSizeImage = document.getElementById("fullSizeImage");

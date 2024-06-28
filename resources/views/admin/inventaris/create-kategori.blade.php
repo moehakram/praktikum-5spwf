@@ -3,20 +3,20 @@
 @section('content')
 <div class="row">
     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-        <h3 class="font-weight-bold">RUANG INVENTARIS</h3>
+        <h3 class="font-weight-bold">JENIS INVENTARIS</h3>
     </div>
     {{-- create --}}
 <div class="col-md-8 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Tambah Ruang Inventaris</h4>
-    <form class="forms-sample" method="POST" action="{{route('ruang.store')}}">
+        <h4 class="card-title">Tambah Kategori</h4>
+    <form class="forms-sample" method="POST" action="{{route('jenis.store')}}">
           @csrf
           <div class="form-group row">
-            <label for="nama_ruang" class="col-sm-3 col-form-label">NAMA RUANG</label>
+            <label for="nama_jenis" class="col-sm-3 col-form-label">NAMA JENIS</label>
             <div class="col-sm-9">
-              <input type="text" name="nama_ruang" class="form-control" id="nama_ruang" value="{{old('nama_ruang')}}" placeholder="nama ruang">
-              @error('nama_ruang')
+              <input type="text" name="nama_jenis" class="form-control" id="nama_jenis" value="{{old('nama_jenis')}}" placeholder="nama jenis">
+              @error('nama_jenis')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>
@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="float-right">
-              <a href="{{route('ruang.index')}}" class="btn btn-light">clear</a>
+              <a href="{{route('jenis.index')}}" class="btn btn-light">clear</a>
               <button type="submit" class="btn btn-primary mr-2">save</button>
           </div>
         </form>

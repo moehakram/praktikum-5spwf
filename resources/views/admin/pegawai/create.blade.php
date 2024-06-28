@@ -13,9 +13,9 @@
         <form class="forms-sample" method="POST" action="{{route('pegawai.store')}}">
           @csrf
           <div class="form-group row">
-            <label for="nip" class="col-sm-3 col-form-label">NIP</label>
+            <label for="nip" class="col-sm-3 col-form-label">NIS</label>
             <div class="col-sm-9">
-              <input type="number" name="nip" class="form-control" id="nip" value="{{old('nip')}}" placeholder="nip">
+              <input type="number" name="nip" class="form-control" id="nip" value="{{old('nip')}}" placeholder="nomor induk">
               @error('nip')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror

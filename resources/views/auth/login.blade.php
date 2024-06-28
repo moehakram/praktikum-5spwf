@@ -28,7 +28,7 @@
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo text-center">
                   <img class="mb-3" src="{{ asset('images/logo-new.png') }}" alt="logo">
-                  <h4>MAKASSAR</h4>
+                  <h4>APP INVENTARIS</h4>
               </div>
               
               @error('error')

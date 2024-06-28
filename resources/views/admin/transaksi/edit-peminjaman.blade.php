@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-        <h3 class="font-weight-bold">INVENTARIS</h3>
+        <h3 class="font-weight-bold">TRANSAKSI</h3>
     </div>
     {{-- create --}}
 <div class="col-md-8 grid-margin stretch-card">

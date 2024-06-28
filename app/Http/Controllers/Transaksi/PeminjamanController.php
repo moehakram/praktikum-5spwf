@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Transaksi;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePeminjamanRequest;
 use App\Http\Requests\UpdatePeminjamanRequest;
-use App\Models\Inventaris;
+use App\Models\Aset;
 use App\Models\Peminjaman;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PeminjamanController extends Controller
@@ -17,20 +16,10 @@ class PeminjamanController extends Controller
         return view('admin.transaksi.peminjaman', compact('peminjamans'));
     }
 
-    // function index(){
-    //     $data = [
-    //         'peminjaman' => Peminjaman::with(['inventaris', 'pegawai'])
-    //             ->where('pegawai.id', Auth::id())
-    //             ->all(),
-    //         'inventaris' => Inventaris::all(['id', 'nama'])
-    //     ];
-    //     return view('admin.transaksi.peminjaman', compact('peminjamans'));
-    // }
-
     function create()
     {
-        $inventaris = Inventaris::where('status', '0')->get(['id', 'nama']);
-        return view('admin.transaksi.create-peminjaman', compact('inventaris'));
+        $aset = Aset::where('status', '0')->get(['id', 'nama']);
+        return view('admin.transaksi.create-peminjaman', compact('aset'));
     }
 
     function store(CreatePeminjamanRequest $request)
@@ -58,7 +47,7 @@ class PeminjamanController extends Controller
                 ->where('id', $id)
                 ->select('id', 'nama_peminjam', 'tgl_pinjam', 'jum_pinjam', 'status', 'keterangan', 'inventaris_id')
                 ->first(),
-            'inventaris' => Inventaris::all(['id', 'nama'])
+            'inventaris' => Aset::all(['id', 'nama'])
         ];
         
         return view('admin.transaksi.edit-peminjaman', $data);

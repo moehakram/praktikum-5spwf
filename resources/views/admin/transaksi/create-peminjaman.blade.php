@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-        <h3 class="font-weight-bold">INVENTARIS</h3>
+        <h3 class="font-weight-bold">TRANSAKSI</h3>
     </div>
     {{-- create --}}
 <div class="col-md-8 grid-margin stretch-card">
@@ -25,8 +25,8 @@
             <label for="nama_barang" class="col-sm-3 col-form-label">NAMA BARANG</label>
             <div class="col-sm-9">
               <select class="form-control" id="nama_barang" name="inventaris_id">
-                <option value="">--select nama barang--</option>
-                @foreach ($inventaris as $item)
+                <option value="" disabled selected>--select nama barang--</option>
+                @foreach ($aset as $item)
                 <option value="{{$item->id}}">{{$item->nama}}</option>
                 @endforeach
               </select>

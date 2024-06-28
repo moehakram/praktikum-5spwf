@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Inventaris extends Model
+class Aset extends Model
 {
     use HasFactory;
     protected $table = 'inventaris';

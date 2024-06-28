@@ -14,9 +14,9 @@
           @csrf
           @method('put')
           <div class="form-group row">
-            <label for="nip" class="col-sm-3 col-form-label">NIP</label>
+            <label for="nip" class="col-sm-3 col-form-label">NIS</label>
             <div class="col-sm-9">
-              <input type="text" name="nip" class="form-control" id="nip" value="{{$user->nip}}" readonly placeholder="nip">
+              <input type="text" name="nip" class="form-control" id="nip" value="{{$user->nip}}" readonly placeholder="nomor induk">
               @error('nip')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror

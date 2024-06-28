@@ -18,16 +18,13 @@ class Pengembalian extends Model
 
     protected $guarded = ['id'];
 
+    public function peminjaman() : BelongsTo
+    {
+        return $this->belongsTo(Peminjaman::class, 'peminjaman_id');
+    }
 
-     // Relasi ke model Peminjaman
-     public function peminjaman() : BelongsTo
-     {
-         return $this->belongsTo(Peminjaman::class, 'peminjaman_id');
-     }
- 
-     // Relasi ke model Pegawai
-     public function pegawai() : BelongsTo
-     {
-         return $this->belongsTo(User::class, 'pegawai_id');
-     }
+    public function pegawai() : BelongsTo
+    {
+        return $this->belongsTo(User::class, 'pegawai_id');
+    }
 }

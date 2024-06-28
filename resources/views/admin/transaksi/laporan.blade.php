@@ -14,14 +14,14 @@
                         <div class="table-responsive">
                             <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> -->
                             <!-- TBL -->
-                            <table class="table table-bordered">
+                            <table id="laporan" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>
-                                            NO.
+                                            Kode Aset
                                         </th>
                                         <th>
-                                            Nama Barang
+                                            Nama Aset
                                         </th>
                                         <th>
                                             Nama Peminjam
@@ -39,7 +39,7 @@
                                             Jumlah Kembali
                                         </th>
                                         <th>
-                                            status
+                                            Status
                                         </th>
                                     </tr>
                                 </thead>
@@ -47,7 +47,7 @@
                                     @foreach ($peminjaman as $item)
                                     <tr>
                                         <td>
-                                            {{$loop->iteration}}
+                                            {{$item->inventaris->id}}
                                         </td>
                                         <td>
                                             {{$item->inventaris->nama}}
@@ -90,5 +90,11 @@
 @endsection
 
 @section('script')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    	
+        $('#laporan').DataTable();
 
+    });
+</script>
 @endsection

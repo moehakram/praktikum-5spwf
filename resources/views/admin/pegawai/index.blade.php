@@ -15,10 +15,10 @@
                         <div class="table-responsive">
                             {{-- <input type="text" class="form-control mb-3" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> --}}
                             <!-- TBL -->
-                            <table class="table table-bordered">
+                            <table id="dataUser" class="table table-bordered">
                                 <thead>
                                     <tr><th>
-                                        NIP
+                                        NIS
                                     </th>
                                         <th>
                                             NAME
@@ -47,8 +47,8 @@
                                         <td>{{ $user->phone_number }}</td>
                                         <td>{{ $user->alamat }}</td>
                                         <td>
-                                            <a type="button" href="{{route('pegawai.edit', $user->nip )}}" class="btn btn-info btn-rounded btn-fw">Ubah</a>
-                                            <a type="button" href="{{route('pegawai.destroy', $user->id )}}" class="btn btn-danger btn-rounded btn-fw">Hapus</a>
+                                            <a type="button" href="{{route('pegawai.edit', $user->nip )}}" class="btn btn-info btn-rounded btn-icon-text"><i class="ti-pencil btn-icon-prepend"></i>ubah</a>
+                                            <a type="button" href="{{route('pegawai.destroy', $user->id )}}" class="btn btn-danger btn-rounded btn-icon-text"><i class="ti-trash btn-icon-prepend"></i>Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -65,5 +65,11 @@
 @endsection
 
 @section('script')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    	
+        $('#dataUser').DataTable();
 
+    });
+</script>
 @endsection

@@ -15,14 +15,14 @@
                         <div class="table-responsive">
                             <!-- <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search"> -->
                             <!-- TBL -->
-                            <table class="table table-bordered">
+                            <table id="dataPeminjaman" class="table table-bordered display">
                                 <thead>
                                     <tr>
                                         <th>
-                                            Id Inventaris
+                                            Kode Aset
                                         </th>
                                         <th>
-                                            Nama Barang
+                                            Nama Aset
                                         </th>
                                         <th>
                                             Nama Peminjam
@@ -37,7 +37,7 @@
                                             Keterangan
                                         </th>
                                         <th>
-                                            Pegawai
+                                            Penanggung Jawab
                                         </th>
                                         <th>
                                             Aksi
@@ -69,8 +69,8 @@
                                             {{$peminjaman->pegawai->name}}
                                         </td>
                                         <td>
-                                            <a href="{{route('peminjaman.edit', $peminjaman->id)}}" class="btn btn-info btn-rounded btn-fw">Ubah</a>
-                                            <a href="{{route('peminjaman.destroy', $peminjaman->id)}}" class="btn btn-danger btn-rounded btn-fw">Hapus</a>
+                                            <a href="{{route('peminjaman.edit', $peminjaman->id)}}" class="btn btn-info btn-rounded btn-icon-text"><i class="ti-pencil btn-icon-prepend"></i>Ubah</a>
+                                            <a href="{{route('peminjaman.destroy', $peminjaman->id)}}" class="btn btn-danger btn-rounded btn-icon-text"><i class="ti-trash btn-icon-prepend"></i>Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -87,5 +87,11 @@
 @endsection
 
 @section('script')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    	
+        $('#dataPeminjaman').DataTable();
 
+    });
+</script>
 @endsection

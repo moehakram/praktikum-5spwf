@@ -14,9 +14,9 @@
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{route('inventaris.index')}}">Inventaris</a></li>
-          {{-- <li class="nav-item"> <a class="nav-link" href="{{route('jenis.index')}}">Jenis</a></li> --}}
-          <li class="nav-item"> <a class="nav-link" href="{{route('ruang.index')}}">Ruang</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('inventaris.index')}}">Aset</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('jenis.index')}}">Kategori</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{{route('ruang.index')}}">Gudang</a></li>
         </ul>
       </div>
     </li>
@@ -28,8 +28,8 @@
       </a>
       <div class="collapse" id="form-elements">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="{{route('peminjaman.index')}}">Peminjaman</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{route('pengembalian.index')}}">Pengembalian</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{route('peminjaman.index')}}">Peminjaman aset</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{route('pengembalian.index')}}">Pengembalian aset</a></li>
           <li class="nav-item"><a class="nav-link" href="{{route('laporan')}}">Laporan</a></li>
         </ul>
       </div>
