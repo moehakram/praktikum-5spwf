@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pengembalian', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('peminjaman_id');
+            $table->unsignedBigInteger('peminjaman_id')->unique();
             $table->date('tgl_kembali');
             $table->integer('jum_kembali');
             $table->string('keterangan')->nullable();

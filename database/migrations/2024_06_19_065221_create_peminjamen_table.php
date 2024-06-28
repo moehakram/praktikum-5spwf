@@ -23,8 +23,8 @@ return new class extends Migration
             $table->timestamps();
         
             // Foreign key constraints
-            $table->foreign('inventaris_id')->references('id')->on('inventaris')->onDelete('cascade');
-            $table->foreign('pegawai_id')->references('id')->on('pegawai')->onDelete('cascade');
+            $table->foreign('inventaris_id')->on('inventaris')->references('id')->onDelete('cascade');
+            $table->foreign('pegawai_id')->on('pegawai')->references('id')->onDelete('cascade');
         });
     }
 

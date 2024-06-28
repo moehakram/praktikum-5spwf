@@ -17,7 +17,7 @@
             <label for="nama_peminjam" class="col-sm-3 col-form-label">NAMA PEMINJAM</label>
             <div class="col-sm-9">
                 <select class="form-control" id="nama_peminjam" name="peminjaman_id">
-                  <option value="">--select nama peminjam--</option>
+                  <option value="" disabled selected>--select nama peminjam--</option>
                     @foreach ($peminjaman as $item)
                     <option value="{{$item->id}}">{{$item->nama_peminjam}}</option>
                     @endforeach

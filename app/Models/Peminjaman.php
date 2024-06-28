@@ -23,7 +23,7 @@ class Peminjaman extends Model
      // Relasi ke model Inventaris
      public function inventaris() : BelongsTo
      {
-         return $this->belongsTo(Aset::class, 'inventaris_id');
+         return $this->belongsTo(Aset::class, 'inventaris_id', 'id');
      }
  
      // Relasi ke model Pegawai

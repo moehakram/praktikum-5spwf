@@ -23,6 +23,6 @@ class Aset extends Model
 
     public function peminjaman() : HasMany
     {
-        return $this->hasMany(Peminjaman::class, 'inventaris_id');
+        return $this->hasMany(Peminjaman::class, 'inventaris_id', 'id');
     }
 }
