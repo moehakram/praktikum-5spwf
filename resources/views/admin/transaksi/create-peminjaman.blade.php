@@ -15,7 +15,7 @@
           <div class="form-group row">
             <label for="nama_peminjam" class="col-sm-3 col-form-label">NAMA PEMINJAM</label>
             <div class="col-sm-9">
-              <input type="text" name="nama_peminjam" class="form-control" id="nama_peminjam" value="{{old('nama_peminjam')}}" placeholder="nama jenis">
+              <input type="text" name="nama_peminjam" class="form-control" id="nama_peminjam" value="{{old('nama_peminjam')}}" placeholder="nama peminjam">
               @error('nama_peminjam')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
