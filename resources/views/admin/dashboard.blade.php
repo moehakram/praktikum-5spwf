@@ -39,7 +39,7 @@
       <div class="col-md-6 mb-4 stretch-card transparent">
         <div class="card card-dark-blue">
           <div class="card-body">
-            <p class="mb-4">Total barang dipinjamkan</p>
+            <p class="mb-4">Total aset dipinjamkan</p>
             <p class="fs-30 mb-2">{{$tot_pinjam}}</p>
             {{-- <p>22.00% (30 days)</p> --}}
           </div>
@@ -50,7 +50,7 @@
       <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
         <div class="card card-light-blue">
           <div class="card-body">
-            <p class="mb-4">Total jenis barang</p>
+            <p class="mb-4">Total kategori aset</p>
             <p class="fs-30 mb-2">{{$tot_jenis_barang}}</p>
             {{-- <p>2.00% (30 days)</p> --}}
           </div>
@@ -59,7 +59,7 @@
       <div class="col-md-6 stretch-card transparent">
         <div class="card card-light-danger">
           <div class="card-body">
-            <p class="mb-4">Total barang belum kembali</p>
+            <p class="mb-4">Total aset belum kembali</p>
             <p class="fs-30 mb-2">{{$tot_brg_belum_kembali}}</p>
             {{-- <p>0.22% (30 days)</p> --}}
           </div>
