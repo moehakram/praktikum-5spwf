@@ -36,9 +36,11 @@
                                         <th>
                                             Keterangan
                                         </th>
+                                        @role('admin')
                                         <th>
                                             Penanggung Jawab
                                         </th>
+                                        @endrole
                                         <th>
                                             Aksi
                                         </th>
@@ -65,10 +67,12 @@
                                         </td>
                                         <td>
                                             {{$pengembalian->keterangan}}
-                                        </td>   
+                                        </td>  
+                                        @role('admin') 
                                         <td>
                                             {{$pengembalian->pengurus->nama}}
                                         </td>
+                                        @endrole
                                         <td>
                                             <a href="{{route('pengembalian.edit', $pengembalian->id)}}" class="btn btn-info btn-rounded btn-icon-text"><i class="ti-pencil btn-icon-prepend"></i>ubah</a>
                                             <a href="{{route('pengembalian.destroy', $pengembalian->id)}}" class="btn btn-danger btn-rounded btn-icon-text"><i class="ti-trash btn-icon-prepend"></i>Hapus</a>

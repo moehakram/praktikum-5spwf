@@ -14,7 +14,12 @@ use Illuminate\Support\Facades\Auth;
 class PengembalianController extends Controller
 {
     function index(){
-        $pengembalians = Pengembalian::with(['peminjaman', 'pengurus'])->get();
+        $user = Auth::user();
+        if($user->hasRole('admin')){
+            $pengembalians = Pengembalian::with(['peminjaman', 'pengurus'])->get();
+        }else{
+            $pengembalians = Pengembalian::with(['peminjaman', 'pengurus'])->where('pengurus_id', $user->id)->get();
+        }
         return view('admin.transaksi.pengembalian.index', compact('pengembalians'));
     }
 
@@ -32,7 +37,12 @@ class PengembalianController extends Controller
 
     function create()
     {
-        $peminjaman = Peminjaman::doesntHave('pengembalian')->get();
+        $user = Auth::user();
+        if($user->hasRole('admin')){
+            $peminjaman = Peminjaman::doesntHave('pengembalian')->get();
+        }else{
+            $peminjaman = Peminjaman::doesntHave('pengembalian')->where('pengurus_id', $user->id)->get();
+        }
         return view('admin.transaksi.pengembalian.create', compact('peminjaman'));
     }
 

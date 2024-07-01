@@ -39,6 +39,9 @@
                                             Jumlah Kembali
                                         </th>
                                         <th>
+                                            Penanggung Jawab
+                                        </th>
+                                        <th>
                                             Status
                                         </th>
                                     </tr>
@@ -66,6 +69,9 @@
                                         </td>
                                         <td>
                                             {{$peminjaman->pengembalian->jumlah ?? '-'}}
+                                        </td>
+                                        <td>
+                                            {{$peminjaman->inventaris->organisasi->nama}}
                                         </td>
                                         <td>
                                             @if ($peminjaman->pengembalian)

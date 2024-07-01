@@ -7,11 +7,19 @@ use App\Http\Requests\CreateInventarisRequest;
 use App\Http\Requests\UpdateInventarisRequest;
 use App\Models\Aset;
 use App\Models\Organisasi;
+use Illuminate\Support\Facades\Auth;
 
 class AsetController extends Controller
 {
     function index(){
-        $inventaris = Aset::with('organisasi')->get();
+        $user = Auth::user();
+        if($user->hasRole('admin')){
+            $inventaris = Aset::with('organisasi')->get();
+        }else{
+            $organisasi = $user->organisasi->id;
+            $inventaris = Aset::where('organisasi_id', $organisasi)->get();
+        }
+        
         return view('admin.inventaris.aset', compact('inventaris'));
     }
 
@@ -44,8 +52,12 @@ class AsetController extends Controller
 
     function edit($id)
     {
+        $organisasi = Organisasi::all();
         $aset = Aset::where('id', $id)->first();
-        return response()->view('admin.inventaris.edit-aset', compact('aset'));
+        return response()->view('admin.inventaris.edit-aset', [
+            'organisasi' => $organisasi,
+            'aset' => $aset
+        ]);
     }
 
     function update(UpdateInventarisRequest $request, $id)

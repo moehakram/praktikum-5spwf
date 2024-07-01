@@ -9,14 +9,15 @@
 <div class="col-md-8 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Tambah Aset</h4>
-        <form class="forms-sample" method="POST" enctype="multipart/form-data" action="{{route('inventaris.store')}}">
+        <h4 class="card-title">Ubah Data Aset</h4>
+        <form class="forms-sample" method="POST" enctype="multipart/form-data" action="{{route('inventaris.update', $aset->id)}}">
           @csrf
+          @method('put')
           <div class="form-group row">
             <label for="nama" class="col-sm-3 col-form-label">NAMA BARANG</label>
             <div class="col-sm-9">
-              <input type="text" name="nama" class="form-control" id="nama" value="{{old('nama')}}" placeholder="nama">
-              @error('nama')
+              <input type="text" name="name" class="form-control" id="nama" value="{{$aset->nama}}" placeholder="nama">
+              @error('name')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>
@@ -24,7 +25,7 @@
           <div class="form-group row">
             <label for="kondisi" class="col-sm-3 col-form-label">KONDISI</label>
             <div class="col-sm-9">
-              <input type="text" name="kondisi" class="form-control" id="kondisi" value="{{old('kondisi')}}" placeholder="kondisi">
+              <input type="text" name="kondisi" class="form-control" id="kondisi" value="{{$aset->kondisi}}" placeholder="kondisi">
               @error('kondisi')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
@@ -33,7 +34,7 @@
           <div class="form-group row">
             <label for="keterangan" class="col-sm-3 col-form-label">KETERANGAN</label>
             <div class="col-sm-9">
-              <input type="text" name="keterangan" class="form-control" id="keterangan" value="{{old('keterangan')}}" placeholder="keterangan">
+              <input type="text" name="keterangan" class="form-control" id="keterangan" value="{{$aset->keterangan}}" placeholder="keterangan">
               @error('keterangan')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
@@ -42,34 +43,16 @@
           <div class="form-group row">
             <label for="stok" class="col-sm-3 col-form-label">STOK</label>
             <div class="col-sm-9">
-              <input type="number" name="stok" class="form-control" id="stok" value="{{old('stok')}}" placeholder="stok">
+              <input type="number" name="stok" class="form-control" id="stok" value="{{$aset->stok}}" placeholder="stok">
               @error('stok')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>
           </div>
-          @role('admin')
-          <div class="form-group row">
-            <label for="organisasi" class="col-sm-3 col-form-label">Penanggung Jawab</label>
-            <div class="col-sm-9">
-              <select class="form-control" id="organisasi" name="organisasi">
-                <option value="" disabled>--SELECT PENANGGUNG JAWAB--</option>
-                @foreach ($organisasi as $item)
-                <option value="{{$item->id}}">{{$item->nama}}</option>
-                @endforeach
-              </select>
-              @error('organisasi')
-                <p class="text-danger text-xs mt-2">{{ $message }}</p>
-              @enderror
-            </div>
-          </div>
-          @else
-            <input type="hidden" name="organisasi" value="{{auth()->user()->organisasi->id}}">
-          @endrole
           <div class="form-group row">
             <label for="foto" class="col-sm-3 col-form-label">FOTO</label>
             <div class="col-sm-9">
-              <input type="file" name="foto" class="form-control" accept="image/*" id="foto" value="{{old('foto')}}" placeholder="foto">
+              <input type="file" name="foto" class="form-control" accept="image/*" id="foto" placeholder="foto">
               @error('foto')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror

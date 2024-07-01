@@ -75,9 +75,11 @@
                                         <th>
                                             Tanggal Register
                                         </th>
+                                        @role('admin')
                                         <th>
                                             Penanggung Jawab
                                         </th>
+                                        @endrole
                                         <th>
                                             Foto
                                         </th>
@@ -96,7 +98,9 @@
                                         <td>{{$aset->keterangan}}</td>
                                         <td>{{$aset->stok}}</td>
                                         <td>{{$aset->created_at}}</td>
+                                        @role('admin')
                                         <td>{{$aset->organisasi->nama}}</td>
+                                        @endrole
                                         <td><img class="thumbnail" data-fullsize="{{url('aset-inventaris/' .$aset->foto)}}" style="width: 50px; cursor: pointer;" src="{{url('aset-inventaris/' .$aset->foto)}}" alt=""></td>
                                         <td>
                                             <a href="{{route('inventaris.edit', $aset->id)}}"  class="btn btn-info btn-rounded btn-icon-text"><i class="ti-pencil btn-icon-prepend"></i>ubah</a>

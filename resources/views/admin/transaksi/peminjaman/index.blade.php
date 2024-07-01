@@ -36,9 +36,11 @@
                                         <th>
                                             Keterangan
                                         </th>
+                                        @role('admin')
                                         <th>
                                             Penanggung Jawab
                                         </th>
+                                        @endrole
                                         <th>
                                             Aksi
                                         </th>
@@ -65,9 +67,11 @@
                                         <td>
                                             {{$peminjaman->keterangan}}
                                         </td>
+                                        @role('admin')
                                         <td>
                                             {{$peminjaman->pengurus->nama}}
                                         </td>
+                                        @endrole
                                         <td>
                                             <a href="{{route('peminjaman.edit', $peminjaman->id)}}" class="btn btn-info btn-rounded btn-icon-text"><i class="ti-pencil btn-icon-prepend"></i>Ubah</a>
                                             <a href="{{route('peminjaman.destroy', $peminjaman->id)}}" class="btn btn-danger btn-rounded btn-icon-text"><i class="ti-trash btn-icon-prepend"></i>Hapus</a>

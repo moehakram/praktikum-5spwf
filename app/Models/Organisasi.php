@@ -22,4 +22,9 @@ class Organisasi extends Model
     {
         return $this->hasMany(User::class, 'organisasi_id', 'id');
     }
+
+    public function aset(): HasMany
+    {
+        return $this->hasMany(User::class, 'organisasi_id', 'id');
+    }
 }

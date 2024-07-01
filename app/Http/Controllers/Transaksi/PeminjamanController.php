@@ -12,7 +12,12 @@ use Illuminate\Support\Facades\Auth;
 class PeminjamanController extends Controller
 {
     function index(){
-        $peminjamans = Peminjaman::with(['inventaris', 'pengurus'])->doesntHave('pengembalian')->get();
+        $user = Auth::user();
+        if($user->hasRole('admin')){
+            $peminjamans = Peminjaman::with(['inventaris', 'pengurus'])->doesntHave('pengembalian')->get();
+        }else{
+            $peminjamans = Peminjaman::with(['inventaris', 'pengurus'])->doesntHave('pengembalian')->where('pengurus_id', $user->id)->get();
+        }
         return view('admin.transaksi.peminjaman.index', compact('peminjamans'));
     }
 
