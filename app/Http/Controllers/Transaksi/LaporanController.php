@@ -11,7 +11,7 @@ class LaporanController extends Controller
 {
     function index()
     {
-        $peminjaman = Peminjaman::with(['pengembalian', 'inventaris'])->get();
-        return view('admin.transaksi.laporan', compact('peminjaman'));
+        $peminjamans = Peminjaman::with(['pengembalian', 'inventaris'])->get();
+        return view('admin.transaksi.laporan', compact('peminjamans'));
     }
 }

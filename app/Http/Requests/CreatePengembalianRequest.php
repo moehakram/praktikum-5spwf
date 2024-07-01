@@ -23,8 +23,8 @@ class CreatePengembalianRequest extends FormRequest
     {
         return [
             'peminjaman_id' => 'required',
-            'tgl_kembali' => 'required',
-            'jum_kembali' => 'required',
+            'tanggal' => 'required',
+            'jumlah' => 'required',
             'keterangan' => 'required'
         ];
     }

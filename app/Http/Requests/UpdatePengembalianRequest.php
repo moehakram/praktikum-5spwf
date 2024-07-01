@@ -22,8 +22,8 @@ class UpdatePengembalianRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tgl_kembali' => 'required',
-            'jum_kembali' => 'required',
+            'tanggal' => 'required',
+            'jumlah' => 'required',
             'keterangan' => 'required'
         ];
     }

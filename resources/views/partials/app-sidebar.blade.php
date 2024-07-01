@@ -39,13 +39,13 @@
         </ul>
       </div>
     </li>
+    @haspermission('pagePegawai')
     <li class="nav-item">
       <a class="nav-link" href="{{route('organisasi.index')}}">
         <i class="icon-head menu-icon"></i>
         <span class="menu-title">Organisasi</span>
       </a>
     </li>
-    @haspermission('pagePegawai')
       <li class="nav-item">
         <a class="nav-link" href="{{route('pegawai.index')}}">
           <i class="icon-head menu-icon"></i>

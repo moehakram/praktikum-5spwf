@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
         User::create([
             'nra' => '0003',
             'nama' => 'admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@email.com',
             'phone_number' => '081234567890',
             'alamat' => 'Jl. Mawar No. 1',
             'organisasi_id' => 1,

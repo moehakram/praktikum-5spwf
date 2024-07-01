@@ -22,11 +22,11 @@ class PegawaiUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['nullable', 'string','min:3', 'max:20'],
-            'email' => ['nullable', 'email'],
-            'phone_number' => ['nullable','min:5'],
-            'alamat' => ['nullable','string','min:4'],
-            'password' => ['nullable','string','min:8']
+            'nama' => ['nullable', 'string','min:3', 'max:20'],
+            'email' => ['nullable', 'email', 'unique:pengurus,email'],
+            'phone_number' => ['nullable','max:20'],
+            'alamat' => ['nullable','string','max:100'],
+            'organisasi' => ['nullable']
         ];
     }
 }

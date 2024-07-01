@@ -18,6 +18,18 @@ class PengembalianController extends Controller
         return view('admin.transaksi.pengembalian.index', compact('pengembalians'));
     }
 
+    function getData(Request $request){
+
+        $peminjamanId = $request->input('peminjaman_id');
+        // Menggunakan model Peminjaman untuk mencari data
+        $peminjaman = Peminjaman::with('inventaris')->find($peminjamanId);
+        if ($peminjaman) {
+            return response()->json(['nama_barang' => $peminjaman->inventaris->nama]);
+        } else {
+            return response()->json(['nama_barang' => ''], 404);
+        }
+    }
+
     function create()
     {
         $peminjaman = Peminjaman::doesntHave('pengembalian')->get();
@@ -26,23 +38,13 @@ class PengembalianController extends Controller
 
     function store(CreatePengembalianRequest $request){
 
-        $pengembalian = Pengembalian::create([
-            'peminjaman_id' => $peminjaman_id = $request->peminjaman_id,
-            'tgl_kembali' => $request->tgl_kembali,
-            'jum_kembali' => $request->jum_kembali,
+        Pengembalian::create([
+            'peminjaman_id' => $request->peminjaman_id,
+            'tanggal' => $request->tanggal,
+            'jumlah' => $request->jumlah,
             'keterangan' => $request->keterangan,
             'pengurus_id' => Auth::id()
         ]);
-
-        if ($pengembalian) {
-            $peminjaman = Peminjaman::find($peminjaman_id);
-            if ($peminjaman) {
-                $peminjaman->status = 0;
-                $peminjaman->inventaris->status = 0;
-                $peminjaman->inventaris->update();
-                $peminjaman->save();
-            }
-        }
 
         return redirect()->route('pengembalian.index')->with('alert', 'success')->with('message', 'Berhasil menambahkan kembali inventaris');
     }
@@ -50,7 +52,7 @@ class PengembalianController extends Controller
     function edit($id)
     {
         $pengembalian = Pengembalian::with(['peminjaman'])->find($id);
-        return view('admin.transaksi.edit-pengembalian', compact('pengembalian'));
+        return view('admin.transaksi.pengembalian.edit', compact('pengembalian'));
     }
 
     function update($id, UpdatePengembalianRequest $request)
@@ -58,8 +60,8 @@ class PengembalianController extends Controller
 
         $pengembalian = Pengembalian::with(['peminjaman'])->find($id);
         $data = [
-            'tgl_kembali' => $request->tgl_kembali,
-            'jum_kembali' => $request->jum_kembali,
+            'tanggal' => $request->tanggal,
+            'jumlah' => $request->jumlah,
             'keterangan' => $request->keterangan,
             'pengurus_id' => Auth::id()
         ];
@@ -70,8 +72,6 @@ class PengembalianController extends Controller
             }
         }
 
-        $pengembalian->peminjaman->status = 0;
-
         $pengembalian->update();
 
         return redirect()->route('pengembalian.index')->with('alert', 'success')->with('message', 'Berhasil mengedit pengembalian inventaris');
@@ -79,16 +79,13 @@ class PengembalianController extends Controller
 
     function destroy($id)
     {
-        $pengembalian = Pengembalian::with('peminjaman')->find($id);
+        $pengembalian = Pengembalian::destroy($id);
         if($pengembalian){
-            $pengembalian->peminjaman->status = 1;
-            $pengembalian->peminjaman->update();
-            $pengembalian->delete();
             return redirect()->route('pengembalian.index')
             ->with('alert', 'success')->with('message', 'Berhasil hapus pengembalian inventaris');
         }else{
             return redirect()->route('pengembalian.index')
-            ->with('alert', 'danger')->with('message', 'Data pengembalian inventaris tidak ditermukan');
+            ->with('alert', 'danger')->with('message', 'Gagal hapus pengembalian inventaris');
         }
     }
 }

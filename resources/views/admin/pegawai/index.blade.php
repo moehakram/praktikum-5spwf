@@ -17,13 +17,13 @@
                             <!-- TBL -->
                             <table id="dataUser" class="table table-bordered">
                                 <thead>
-                                    <tr><th>
-                                        NIS
-                                    </th>
+                                    <tr>
+                                        <th>
+                                            NRA
+                                        </th>
                                         <th>
                                             NAME
                                         </th>
-                                        
                                         <th>
                                             EMAIL
                                         </th>
@@ -34,6 +34,9 @@
                                             ALAMAT
                                         </th>
                                         <th>
+                                            ORGANISASI
+                                        </th>
+                                        <th>
                                             AKSI
                                         </th>
                                     </tr>
@@ -41,13 +44,14 @@
                                 <tbody>
                                     @foreach($users as $user)
                                     <tr>
-                                        <td>{{ $user->nip }}</td>
-                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->nra }}</td>
+                                        <td>{{ $user->nama }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone_number }}</td>
                                         <td>{{ $user->alamat }}</td>
+                                        <td>{{ $user->organisasi->nama ?? '' }}</td>
                                         <td>
-                                            <a type="button" href="{{route('pegawai.edit', $user->nip )}}" class="btn btn-info btn-rounded btn-icon-text"><i class="ti-pencil btn-icon-prepend"></i>ubah</a>
+                                            <a type="button" href="{{route('pegawai.edit', $user->nra )}}" class="btn btn-info btn-rounded btn-icon-text"><i class="ti-pencil btn-icon-prepend"></i>ubah</a>
                                             <a type="button" href="{{route('pegawai.destroy', $user->id )}}" class="btn btn-danger btn-rounded btn-icon-text"><i class="ti-trash btn-icon-prepend"></i>Hapus</a>
                                         </td>
                                     </tr>

@@ -10,14 +10,28 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Tambah Pegawai</h4>
-        <form class="forms-sample" method="POST" action="{{route('pegawai.update', $user->nip)}}">
+        <form class="forms-sample" method="POST" action="{{route('pegawai.update', $user->nra)}}">
           @csrf
           @method('put')
           <div class="form-group row">
-            <label for="nip" class="col-sm-3 col-form-label">NIS</label>
+            <label for="nra" class="col-sm-3 col-form-label">NRA</label>
             <div class="col-sm-9">
-              <input type="text" name="nip" class="form-control" id="nip" value="{{$user->nip}}" readonly placeholder="nomor induk">
-              @error('nip')
+              <input type="text" name="nra" class="form-control" id="nra" value="{{$user->nra}}" readonly placeholder="nomor registrasi anggota">
+              @error('nra')
+                <p class="text-danger text-xs mt-2">{{ $message }}</p>
+              @enderror
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="organisasi" class="col-sm-3 col-form-label">ORGANISASI</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="organisasi" name="organisasi">
+                <option value="">--select nama organisasi--</option>
+                @foreach ($organisasi as $item)
+                <option value="{{$item->id}}">{{$item->nama}}</option>
+                @endforeach
+              </select>
+              @error('organisasi')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>
@@ -25,7 +39,7 @@
           <div class="form-group row">
             <label for="nama" class="col-sm-3 col-form-label">NAMA</label>
             <div class="col-sm-9">
-              <input type="text" name="name" class="form-control" id="nama" value="{{$user->name}}" placeholder="nama">
+              <input type="text" name="nama" class="form-control" id="nama" value="{{$user->nama}}" placeholder="nama">
               @error('name')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePegawaiRequest;
 use App\Http\Requests\PegawaiUpdateRequest;
+use App\Models\Organisasi;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-    private $password_default = 'password123';
+    private $password_default = 'password';
 
     function index(){
         $currentUserId = Auth::id();
@@ -21,42 +22,45 @@ class UserController extends Controller
 
     function create(){
         return view('admin.pegawai.create', [
+            'organisasi' => Organisasi::all(['id', 'nama']),
             'password' => $this->password_default
         ]);
     }
 
     function store(CreatePegawaiRequest $data){
 
-        $user = new User([
-            'nip' => $data['nip'],
-            'name' => $data['name'],
+        User::create([
+            'nra' => $data['nra'],
+            'nama' => $data['nama'],
             'email' => $data['email'],
             'phone_number' => $data['phone_number'],
             'alamat' => $data['alamat'],
+            'organisasi_id' => $data['organisasi'],
             'password' => Hash::make($this->password_default)
         ]);
-
-        $user->save();
 
         return redirect()->route('pegawai.index')->with('alert', 'success')->with('message', 'Berhasil menambahkan pegawai');
     }
 
-    function edit($nip){
-        $data['user'] = User::where('nip', $nip)->first();
-        // dd($data['user']);
-        return view('admin.pegawai.edit', $data);
+    function edit($nra){
+        $user = User::where('nra', $nra)->first();
+        $organisasi = Organisasi::all(['id', 'nama']);
+        return view('admin.pegawai.edit', [
+            'user' => $user,
+            'organisasi' => $organisasi
+        ]);
     }
 
-    function update(PegawaiUpdateRequest $data, $nip)
+    function update(PegawaiUpdateRequest $data, $nra)
     {
 
-        $user = User::where('nip', $nip)->first();
+        $user = User::where('nra', $nra)->first();
 
-        if($data['name']){
-            $user->name = $data['name'];
+        if($data['nama']){
+            $user->nama = $data['nama'];
         }
 
-        if(!empty($data['email']) && !User::where('email', $data['email'])->exists()){
+        if($data['email']){
             $user->email = $data['email'];
         }
 
@@ -68,6 +72,10 @@ class UserController extends Controller
             $user->alamat = $data['alamat'];
         }
 
+        if($data['organisasi']){
+            $user->organisasi_id = $data['organisasi'];
+        }
+
         $user->update();
 
         return redirect()->route('pegawai.index')
@@ -75,9 +83,7 @@ class UserController extends Controller
     }
 
     function destroy($id){
-        $user = User::find($id);
-        $user->delete();
-
+        $user = User::destroy($id);
         return redirect()->route('pegawai.index')
         ->with('alert', 'success')->with('message', 'Berhasil hapus pegawai');
     }

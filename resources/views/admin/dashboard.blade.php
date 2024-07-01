@@ -50,8 +50,8 @@
       <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
         <div class="card card-light-blue">
           <div class="card-body">
-            <p class="mb-4">Total kategori aset</p>
-            <p class="fs-30 mb-2">{{$tot_jenis_barang}}</p>
+            <p class="mb-4">Jumlah Organisasi</p>
+            <p class="fs-30 mb-2">{{$jumlah_organisasi}}</p>
             {{-- <p>2.00% (30 days)</p> --}}
           </div>
         </div>

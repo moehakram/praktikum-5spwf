@@ -22,11 +22,12 @@ class CreatePegawaiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nip' => ['required', 'unique:pegawai,nip'],
-            'name' => ['required', 'string','min:3', 'max:20'],
-            'email' => ['required', 'email', 'unique:pegawai,email'],
-            'phone_number' => ['nullable','min:5'],
-            'alamat' => ['required','string','min:4']
+            'nra' => ['required', 'unique:pengurus,nra'],
+            'nama' => ['required', 'string','min:3', 'max:30'],
+            'email' => ['required', 'email', 'unique:pengurus,email'],
+            'phone_number' => ['nullable','max:20'],
+            'alamat' => ['required','string','max:100'],
+            'organisasi' => ['required','string','max:20']
         ];
     }
 }

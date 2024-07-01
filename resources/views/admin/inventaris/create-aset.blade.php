@@ -52,6 +52,7 @@
             <label for="organisasi" class="col-sm-3 col-form-label">Penanggung Jawab</label>
             <div class="col-sm-9">
               <select class="form-control" id="organisasi" name="organisasi">
+                <option value="" disabled>--SELECT PENANGGUNG JAWAB--</option>
                 @foreach ($organisasi as $item)
                 <option value="{{$item->id}}">{{$item->nama}}</option>
                 @endforeach

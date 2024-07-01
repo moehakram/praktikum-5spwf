@@ -67,7 +67,7 @@
                                             {{$pengembalian->keterangan}}
                                         </td>   
                                         <td>
-                                            {{$pengembalian->pengurus->name}}
+                                            {{$pengembalian->pengurus->nama}}
                                         </td>
                                         <td>
                                             <a href="{{route('pengembalian.edit', $pengembalian->id)}}" class="btn btn-info btn-rounded btn-icon-text"><i class="ti-pencil btn-icon-prepend"></i>ubah</a>

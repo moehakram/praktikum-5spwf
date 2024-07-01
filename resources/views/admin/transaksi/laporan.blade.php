@@ -44,31 +44,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($peminjaman as $item)
+                                    @foreach ($peminjamans as $peminjaman)
                                     <tr>
                                         <td>
-                                            {{$item->inventaris->id}}
+                                            {{$peminjaman->inventaris->id}}
                                         </td>
                                         <td>
-                                            {{$item->inventaris->nama}}
+                                            {{$peminjaman->inventaris->nama}}
                                         </td>
                                         <td>
-                                            {{$item->nama_peminjam}}
+                                            {{$peminjaman->nama}}
                                         </td>
                                         <td>
-                                            {{$item->tgl_pinjam}}
+                                            {{$peminjaman->tanggal}}
                                         </td>
                                         <td>
-                                            {{$item->pengembalian->tgl_kembali ?? 'none'}}
+                                            {{$peminjaman->pengembalian->tanggal ?? '-'}}
                                         </td>
                                         <td>
-                                            {{$item->jum_pinjam}}
+                                            {{$peminjaman->jumlah}}
                                         </td>
                                         <td>
-                                            {{$item->pengembalian->jum_kembali ?? 'none'}}
+                                            {{$peminjaman->pengembalian->jumlah ?? '-'}}
                                         </td>
                                         <td>
-                                            @if ($item->status === 0)
+                                            @if ($peminjaman->pengembalian)
                                                 {{'Sudah dikembalikan'}}
                                             @else
                                             {{'Belum dikembalikan'}}

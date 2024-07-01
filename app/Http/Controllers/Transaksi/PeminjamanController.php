@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class PeminjamanController extends Controller
 {
     function index(){
-        $peminjamans = Peminjaman::with(['inventaris', 'pengurus'])->get();
+        $peminjamans = Peminjaman::with(['inventaris', 'pengurus'])->doesntHave('pengembalian')->get();
         return view('admin.transaksi.peminjaman.index', compact('peminjamans'));
     }
 

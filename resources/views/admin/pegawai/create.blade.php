@@ -13,10 +13,24 @@
         <form class="forms-sample" method="POST" action="{{route('pegawai.store')}}">
           @csrf
           <div class="form-group row">
-            <label for="nip" class="col-sm-3 col-form-label">NIS</label>
+            <label for="nra" class="col-sm-3 col-form-label">NRA</label>
             <div class="col-sm-9">
-              <input type="number" name="nip" class="form-control" id="nip" value="{{old('nip')}}" placeholder="nomor induk">
-              @error('nip')
+              <input type="text" name="nra" class="form-control" id="nra" value="{{old('nra')}}" placeholder="nomor regitrasi anggota">
+              @error('nra')
+                <p class="text-danger text-xs mt-2">{{ $message }}</p>
+              @enderror
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="organisasi" class="col-sm-3 col-form-label">ORGANISASI</label>
+            <div class="col-sm-9">
+              <select class="form-control" id="organisasi" name="organisasi">
+                <option value="">--select nama organisasi--</option>
+                @foreach ($organisasi as $item)
+                <option value="{{$item->id}}">{{$item->nama}}</option>
+                @endforeach
+              </select>
+              @error('organisasi')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>
@@ -24,8 +38,8 @@
           <div class="form-group row">
             <label for="nama" class="col-sm-3 col-form-label">NAMA</label>
             <div class="col-sm-9">
-              <input type="text" name="name" class="form-control" id="nama" value="{{old('name')}}" placeholder="nama">
-              @error('name')
+              <input type="text" name="nama" class="form-control" id="nama" value="{{old('nama')}}" placeholder="nama">
+              @error('nama')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>
