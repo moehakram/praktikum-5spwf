@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Aset extends Model
@@ -16,13 +17,16 @@ class Aset extends Model
     public $incrementing = true;
     
 
-    protected  $guarded = [
-        'id'
-    ];
+    protected  $guarded = ['id'];
 
 
     public function peminjaman() : HasMany
     {
         return $this->hasMany(Peminjaman::class, 'inventaris_id', 'id');
+    }
+
+    public function organisasi() : BelongsTo
+    {
+        return $this->belongsTo(Organisasi::class, 'organisasi_id', 'id');
     }
 }

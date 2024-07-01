@@ -12,45 +12,41 @@ use Illuminate\Support\Facades\Auth;
 class PeminjamanController extends Controller
 {
     function index(){
-        $peminjamans = Peminjaman::with(['inventaris', 'pegawai'])->where('status', 1)->get();
-        return view('admin.transaksi.peminjaman', compact('peminjamans'));
+        $peminjamans = Peminjaman::with(['inventaris', 'pengurus'])->get();
+        return view('admin.transaksi.peminjaman.index', compact('peminjamans'));
     }
 
     function create()
     {
-        $aset = Aset::where('status', '0')->get(['id', 'nama']);
-        return view('admin.transaksi.create-peminjaman', compact('aset'));
+        $aset = Aset::doesntHave('peminjaman')->get(['id', 'nama']);
+        return view('admin.transaksi.peminjaman.create', compact('aset'));
     }
 
     function store(CreatePeminjamanRequest $request)
     {
-        $peminjaman = Peminjaman::create([
-            'nama_peminjam' => $request->nama_peminjam,
+        Peminjaman::create([
+            'nama' => $request->nama,
             'inventaris_id' => $request->inventaris_id,
-            'tgl_pinjam' => $request->tgl_pinjam,
-            'jum_pinjam' => $request->jum_pinjam,
-            'status' => 1,
+            'tanggal' => $request->tanggal,
+            'jumlah' => $request->jumlah,
             'keterangan' => $request->keterangan,
-            'pegawai_id' => Auth::id()
+            'pengurus_id' => Auth::id()
         ]);
-
-        $peminjaman->inventaris->status = 1;
-        $peminjaman->inventaris->update();
 
         return redirect()->route('peminjaman.index')->with('alert', 'success')->with('message', 'Berhasil menambahkan peminjam inventaris');
     }
 
     function edit($id)
     {
-        $data = [
-            'peminjaman' => Peminjaman::with(['inventaris', 'pegawai'])
-                ->where('id', $id)
-                ->select('id', 'nama_peminjam', 'tgl_pinjam', 'jum_pinjam', 'status', 'keterangan', 'inventaris_id')
-                ->first(),
-            'inventaris' => Aset::all(['id', 'nama'])
-        ];
+        $peminjaman = Peminjaman::with(['inventaris', 'pengurus'])
+                ->where('id', $id)->first();
+        // $inventaris = Aset::all(['id', 'nama']);
+        $aset = Aset::doesntHave('peminjaman')->get(['id', 'nama']);
         
-        return view('admin.transaksi.edit-peminjaman', $data);
+        return view('admin.transaksi.peminjaman.edit', [
+            'peminjaman' => $peminjaman,
+            'aset' => $aset
+        ]);
     }
 
     function update(UpdatePeminjamanRequest $request, $id)
@@ -58,13 +54,12 @@ class PeminjamanController extends Controller
 
         $peminjaman = Peminjaman::where('id', $id)->first();
         $data = [
-            'nama_peminjam' => $request->nama_peminjam,
+            'nama' => $request->nama,
             'inventaris_id' => $request->inventaris_id,
-            'tgl_pinjam' => $request->tgl_pinjam,
-            'jum_pinjam' => $request->jum_pinjam,
-            'status' => 1,
+            'tanggal' => $request->tanggal,
+            'jumlah' => $request->jumlah,
             'keterangan' => $request->keterangan,
-            'pegawai_id' => Auth::id()
+            'pengurus_id' => Auth::id()
         ];
         
         foreach($data as $index => $value){
@@ -79,10 +74,7 @@ class PeminjamanController extends Controller
        }
 
     function destroy($id){
-        $peminjaman = Peminjaman::find($id);
-        $peminjaman->inventaris->status = 0;
-        $peminjaman->inventaris->save();
-        $peminjaman->delete();
+        Peminjaman::destroy($id);
         return redirect()->route('peminjaman.index')
         ->with('alert', 'success')->with('message', 'Berhasil hapus peminjaman inventaris');
     }

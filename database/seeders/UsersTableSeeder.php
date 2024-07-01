@@ -16,11 +16,12 @@ class UsersTableSeeder extends Seeder
     {
        
         User::create([
-            'nip' => '0001',
-            'name' => 'Ilyas',
+            'nra' => '0001',
+            'nama' => 'Ilyas',
             'email' => 'ilyas@email.com',
             'phone_number' => '081234567890',
             'alamat' => 'Jl. Mawar No. 1',
+            'organisasi_id' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
@@ -28,11 +29,12 @@ class UsersTableSeeder extends Seeder
             'updated_at' => now(),
         ])->assignRole('admin');
         User::create([
-            'nip' => '0002',
-            'name' => 'Rifki',
+            'nra' => '0002',
+            'nama' => 'Rifki',
             'email' => 'rifki@email.com',
             'phone_number' => '081234567890',
             'alamat' => 'Jl. Mawar No. 1',
+            'organisasi_id' => 2,
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
@@ -40,11 +42,12 @@ class UsersTableSeeder extends Seeder
             'updated_at' => now(),
         ])->assignRole('pegawai');
         User::create([
-            'nip' => '0003',
-            'name' => 'admin',
+            'nra' => '0003',
+            'nama' => 'admin',
             'email' => 'admin@gmail.com',
             'phone_number' => '081234567890',
             'alamat' => 'Jl. Mawar No. 1',
+            'organisasi_id' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),

@@ -22,10 +22,10 @@ class UpdatePeminjamanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama_peminjam' => 'nullable|max:30',
+            'nama' => 'nullable|max:30',
             'inventaris_id' => 'required',
-            'tgl_pinjam' => 'nullable',
-            'jum_pinjam' => 'nullable',
+            'tanggal' => 'nullable',
+            'jumlah' => 'nullable',
             'keterangan' => 'nullable'
         ];
     }

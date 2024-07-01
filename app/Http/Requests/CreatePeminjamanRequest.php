@@ -22,10 +22,10 @@ class CreatePeminjamanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama_peminjam' => 'required|max:30',
+            'nama' => 'required|max:30',
             'inventaris_id' => 'required',
-            'tgl_pinjam' => 'required|date',
-            'jum_pinjam' => 'required',
+            'tanggal' => 'required|date',
+            'jumlah' => 'required',
             'keterangan' => 'nullable'
         ];
     }

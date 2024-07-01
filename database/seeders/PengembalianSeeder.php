@@ -21,7 +21,7 @@ class PengembalianSeeder extends Seeder
                 'tgl_kembali' => '2024-06-05',
                 'jum_kembali' => '1',
                 'keterangan' => 'Pengembalian tepat waktu',
-                'pegawai_id' => '1',
+                'pengurus_id' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
@@ -30,7 +30,7 @@ class PengembalianSeeder extends Seeder
                 'tgl_kembali' => '2024-06-06',
                 'jum_kembali' => '2',
                 'keterangan' => 'Tidak ada kerusakan',
-                'pegawai_id' => '2',
+                'pengurus_id' => '2',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]

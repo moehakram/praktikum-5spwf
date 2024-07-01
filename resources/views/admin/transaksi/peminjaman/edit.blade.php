@@ -9,14 +9,15 @@
 <div class="col-md-8 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Tambah Peminjaman Inventaris</h4>
-    <form class="forms-sample" method="POST" action="{{route('peminjaman.store')}}">
+        <h4 class="card-title">Edit Peminjam Aset</h4>
+    <form class="forms-sample" method="POST" action="{{route('peminjaman.update', $peminjaman->id)}}">
           @csrf
+          @method('put')
           <div class="form-group row">
-            <label for="nama_peminjam" class="col-sm-3 col-form-label">NAMA PEMINJAM</label>
+            <label for="nama" class="col-sm-3 col-form-label">NAMA PEMINJAM</label>
             <div class="col-sm-9">
-              <input type="text" name="nama_peminjam" class="form-control" id="nama_peminjam" value="{{old('nama_peminjam')}}" placeholder="nama peminjam">
-              @error('nama_peminjam')
+              <input type="text" name="nama" class="form-control" id="nama" value="{{$peminjaman->nama}}" placeholder="nama jenis">
+              @error('nama')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>
@@ -25,9 +26,8 @@
             <label for="nama_barang" class="col-sm-3 col-form-label">NAMA BARANG</label>
             <div class="col-sm-9">
               <select class="form-control" id="nama_barang" name="inventaris_id">
-                <option value="" disabled selected>--select nama barang--</option>
-                @foreach ($aset as $item)
-                <option value="{{$item->id}}">{{$item->nama}}</option>
+                @foreach ($aset as $row)
+                <option value="{{$row->id}}"   >{{$row->nama}}</option>
                 @endforeach
               </select>
               @error('inventaris_id')
@@ -36,19 +36,19 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="tgl_pinjam" class="col-sm-3 col-form-label">TANGGAL PINJAM</label>
+            <label for="tanggal" class="col-sm-3 col-form-label">TANGGAL PINJAM</label>
             <div class="col-sm-9">
-              <input type="date" name="tgl_pinjam" class="form-control" id="tgl_pinjam" value="{{old('tgl_pinjam')}}" placeholder="tgl_pinjam">
-              @error('tgl_pinjam')
+              <input type="date" name="tanggal" class="form-control" id="tanggal" value="{{$peminjaman->tanggal}}" placeholder="tanggal">
+              @error('tanggal')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>
           </div>
           <div class="form-group row">
-            <label for="jum_pinjam" class="col-sm-3 col-form-label">JUMLAH PINJAM</label>
+            <label for="jumlah" class="col-sm-3 col-form-label">JUMLAH PINJAM</label>
             <div class="col-sm-9">
-              <input type="number" name="jum_pinjam" class="form-control" id="jum_pinjam" value="{{old('jum_pinjam')}}" placeholder="jumlah pinjam">
-              @error('jum_pinjam')
+              <input type="number" name="jumlah" class="form-control" id="jumlah" value="{{$peminjaman->jumlah}}" placeholder="jumlah">
+              @error('jumlah')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>
@@ -56,7 +56,7 @@
           <div class="form-group row">
             <label for="keterangan" class="col-sm-3 col-form-label">KETERANGAN</label>
             <div class="col-sm-9">
-              <input type="text" name="keterangan" class="form-control" id="keterangan" value="{{old('keterangan')}}" placeholder="kondisi barang">
+              <input type="text" name="keterangan" class="form-control" id="keterangan" value="{{$peminjaman->keterangan}}" placeholder="keterangan">
               @error('keterangan')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror

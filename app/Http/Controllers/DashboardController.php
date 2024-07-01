@@ -17,7 +17,7 @@ class DashboardController extends Controller
             return view('admin.dashboard', [
                 'tot_pegawai' => User::count() - 1, 
                 'tot_pinjam' => Peminjaman::sum('jum_pinjam'), 
-                'tot_jenis_barang' => Kategori::count(), 
+                'tot_jenis_barang' => 0, 
                 'tot_brg_belum_kembali' => Peminjaman::where('status', 1)->sum('jum_pinjam'), 
             ]);
         }

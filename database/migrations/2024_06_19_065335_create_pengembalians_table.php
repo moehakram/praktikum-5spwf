@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('pengembalian', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('peminjaman_id')->unique();
-            $table->date('tgl_kembali');
-            $table->integer('jum_kembali');
+            $table->date('tanggal');
+            $table->integer('jumlah');
             $table->string('keterangan')->nullable();
-            $table->unsignedBigInteger('pegawai_id');
+            $table->unsignedBigInteger('pengurus_id');
             $table->timestamps();
         
             // Foreign key constraints
             $table->foreign('peminjaman_id')->references('id')->on('peminjaman')->onDelete('cascade');
-            $table->foreign('pegawai_id')->references('id')->on('pegawai')->onDelete('cascade');
+            $table->foreign('pengurus_id')->references('id')->on('pengurus')->onDelete('cascade');
         });
     }
 

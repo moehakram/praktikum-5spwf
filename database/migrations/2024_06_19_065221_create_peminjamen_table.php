@@ -14,17 +14,16 @@ return new class extends Migration
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('inventaris_id');
-            $table->string('nama_peminjam');
-            $table->date('tgl_pinjam');
-            $table->integer('jum_pinjam');
-            $table->boolean('status')->default(1);
+            $table->string('nama');
+            $table->date('tanggal');
+            $table->integer('jumlah');
             $table->string('keterangan')->nullable();
-            $table->unsignedBigInteger('pegawai_id');
+            $table->unsignedBigInteger('pengurus_id');
             $table->timestamps();
         
             // Foreign key constraints
             $table->foreign('inventaris_id')->on('inventaris')->references('id')->onDelete('cascade');
-            $table->foreign('pegawai_id')->on('pegawai')->references('id')->onDelete('cascade');
+            $table->foreign('pengurus_id')->on('pengurus')->references('id')->onDelete('cascade');
         });
     }
 

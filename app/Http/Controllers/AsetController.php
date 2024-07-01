@@ -1,37 +1,32 @@
 <?php
 
-namespace App\Http\Controllers\Inventaris;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateInventarisRequest;
 use App\Http\Requests\UpdateInventarisRequest;
 use App\Models\Aset;
-use App\Models\Kategori;
-use App\Models\Gudang;
+use App\Models\Organisasi;
 
 class AsetController extends Controller
 {
     function index(){
-        $aset = Aset::all();
-        return view('admin.inventaris.aset', compact('aset'));
+        $inventaris = Aset::with('organisasi')->get();
+        return view('admin.inventaris.aset', compact('inventaris'));
     }
 
     function create(){
-        $data = [
-            'jenis' => Kategori::all(),
-            'ruang' => Gudang::all()
-        ];
-        return response()->view('admin.inventaris.create-aset', $data);
+        $organisasi = Organisasi::all();
+        return response()->view('admin.inventaris.create-aset', compact('organisasi'));
     }
 
     function store(CreateInventarisRequest $request){
         $aset = new Aset([
-            'nama' => $request['name'],
+            'nama' => $request['nama'],
             'kondisi' => $request['kondisi'],
             'keterangan' => $request['keterangan'],
             'stok' => $request['stok'],
-            'jenis' => $request['jenis'],
-            'ruang' => $request['ruang']
+            'organisasi_id' => $request['organisasi']
         ]);
 
         if ($request->hasFile('foto')) {
@@ -47,14 +42,10 @@ class AsetController extends Controller
         return redirect()->route('inventaris.index')->with('alert', 'success')->with('message', 'Berhasil menambahkan aset inventaris');
     }
 
-    function edit($id){
-        $data = [
-            'aset' => Aset::where('id', $id)->first(),
-            'jenis' => Kategori::all(),
-            'ruang' => Gudang::all()
-        ];
-        return response()->view('admin.inventaris.edit-aset', $data);
-
+    function edit($id)
+    {
+        $aset = Aset::where('id', $id)->first();
+        return response()->view('admin.inventaris.edit-aset', compact('aset'));
     }
 
     function update(UpdateInventarisRequest $request, $id)
@@ -76,13 +67,9 @@ class AsetController extends Controller
         if($stok = $request->stok){
             $aset->stok = $stok;
         }
-        
-        if($jenis = $request->jenis){
-            $aset->jenis = $jenis;
-        }
 
-        if($ruang = $request->ruang){
-            $aset->ruang = $ruang;
+        if($organisasi = $request->organisasi){
+            $aset->organisasi_id = $organisasi;
         }
 
         if ($request->hasFile('foto')) {
@@ -96,13 +83,10 @@ class AsetController extends Controller
         $aset->update();
 
         return redirect()->route('inventaris.index')->with('alert', 'success')->with('message', 'Berhasil mengedit aset inventaris');
-
     }
 
     function destroy($id){
-        $aset = Aset::find($id);
-        $aset->delete();
-
+        Aset::destroy($id);
         return redirect()->route('inventaris.index')
         ->with('alert', 'success')->with('message', 'Berhasil hapus aset inventaris');
     }

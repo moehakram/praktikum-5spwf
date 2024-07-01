@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -13,7 +14,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
 
-    protected $table = 'pegawai';
+    protected $table = 'pengurus';
     protected $primaryKey = 'id';
     protected $keyType = 'int';
     public $timestamps = true;
@@ -55,5 +56,10 @@ class User extends Authenticatable
       public function pengembalian()
       {
           return $this->hasMany(Pengembalian::class, 'pegawai_id');
+      }
+
+      function organisasi(): BelongsTo
+      {
+        return $this->belongsTo(Organisasi::class, 'organisasi_id', 'id');
       }
 }

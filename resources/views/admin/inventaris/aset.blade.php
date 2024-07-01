@@ -73,13 +73,10 @@
                                             Stok
                                         </th>
                                         <th>
-                                            Kategori
-                                        </th>
-                                        <th>
                                             Tanggal Register
                                         </th>
                                         <th>
-                                            Gudang
+                                            Penanggung Jawab
                                         </th>
                                         <th>
                                             Foto
@@ -90,21 +87,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($aset as $invent)
+                                    @foreach($inventaris as $aset)
                                     <tr>
                                         {{-- <td>{{$loop->iteration}}</td> --}}
-                                        <td>{{$invent->id}}</td>
-                                        <td>{{$invent->nama}}</td>
-                                        <td>{{$invent->kondisi}}</td>
-                                        <td>{{$invent->keterangan}}</td>
-                                        <td>{{$invent->stok}}</td>
-                                        <td>{{$invent->jenis}}</td>
-                                        <td>{{$invent->created_at}}</td>
-                                        <td>{{$invent->ruang}}</td>
-                                        <td><img class="thumbnail" data-fullsize="{{url('aset-inventaris/' .$invent->foto)}}" style="width: 50px; cursor: pointer;" src="{{url('aset-inventaris/' .$invent->foto)}}" alt=""></td>
+                                        <td>{{$aset->id}}</td>
+                                        <td>{{$aset->nama}}</td>
+                                        <td>{{$aset->kondisi}}</td>
+                                        <td>{{$aset->keterangan}}</td>
+                                        <td>{{$aset->stok}}</td>
+                                        <td>{{$aset->created_at}}</td>
+                                        <td>{{$aset->organisasi->nama}}</td>
+                                        <td><img class="thumbnail" data-fullsize="{{url('aset-inventaris/' .$aset->foto)}}" style="width: 50px; cursor: pointer;" src="{{url('aset-inventaris/' .$aset->foto)}}" alt=""></td>
                                         <td>
-                                            <a href="{{route('inventaris.edit', $invent->id)}}"  class="btn btn-info btn-rounded btn-icon-text"><i class="ti-pencil btn-icon-prepend"></i>ubah</a>
-                                            <a href="{{route('inventaris.destroy', $invent->id)}}" class="btn btn-danger btn-rounded btn-icon-text"><i class="ti-trash btn-icon-prepend"></i>Hapus</a>
+                                            <a href="{{route('inventaris.edit', $aset->id)}}"  class="btn btn-info btn-rounded btn-icon-text"><i class="ti-pencil btn-icon-prepend"></i>ubah</a>
+                                            <a href="{{route('inventaris.destroy', $aset->id)}}" class="btn btn-danger btn-rounded btn-icon-text"><i class="ti-trash btn-icon-prepend"></i>Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach

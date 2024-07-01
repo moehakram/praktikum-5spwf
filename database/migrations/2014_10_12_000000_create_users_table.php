@@ -8,14 +8,15 @@ return new class extends Migration
 {   
     public function up(): void
     {
-        Schema::create('pegawai', function (Blueprint $table) {
+        Schema::create('pengurus', function (Blueprint $table) {
             $table->id();
-            $table->string('nip')->unique();
-            $table->string('name')->nullable(false);
+            $table->string('nra')->unique();
+            $table->string('nama')->nullable(false);
             $table->string('email')->nullable(false)->unique();
             $table->string('phone_number')->nullable();
             $table->string('alamat')->nullable();
             $table->string('password')->nullable(false);
+            $table->unsignedBigInteger('organisasi_id')->nullable(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pegawai');
+        Schema::dropIfExists('pengurus');
     }
 };

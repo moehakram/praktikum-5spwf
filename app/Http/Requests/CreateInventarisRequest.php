@@ -22,11 +22,11 @@ class CreateInventarisRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:15'],
+            'nama' => ['required', 'max:15'],
             'kondisi' => ['required', 'max:15'],
             'keterangan' => ['nullable', 'max:30'],
             'stok' => 'required',
-            'jenis' => 'required',
+            'organisasi' => 'required',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg'
         ];
     }

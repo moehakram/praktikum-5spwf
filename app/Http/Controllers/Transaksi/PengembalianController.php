@@ -14,26 +14,14 @@ use Illuminate\Support\Facades\Auth;
 class PengembalianController extends Controller
 {
     function index(){
-        $pengembalians = Pengembalian::with(['peminjaman', 'pegawai'])->get();
-        return view('admin.transaksi.pengembalian', compact('pengembalians'));
-    }
-
-    function getData(Request $request){
-
-        $peminjamanId = $request->input('peminjaman_id');
-        // Menggunakan model Peminjaman untuk mencari data
-        $peminjaman = Peminjaman::with('inventaris')->find($peminjamanId);
-        if ($peminjaman) {
-            return response()->json(['nama_barang' => $peminjaman->inventaris->nama]);
-        } else {
-            return response()->json(['nama_barang' => ''], 404);
-        }
+        $pengembalians = Pengembalian::with(['peminjaman', 'pengurus'])->get();
+        return view('admin.transaksi.pengembalian.index', compact('pengembalians'));
     }
 
     function create()
     {
-        $peminjaman = Peminjaman::with('inventaris')->where('status', 1)->get();
-        return view('admin.transaksi.create-pengembalian', compact('peminjaman'));
+        $peminjaman = Peminjaman::doesntHave('pengembalian')->get();
+        return view('admin.transaksi.pengembalian.create', compact('peminjaman'));
     }
 
     function store(CreatePengembalianRequest $request){
@@ -43,7 +31,7 @@ class PengembalianController extends Controller
             'tgl_kembali' => $request->tgl_kembali,
             'jum_kembali' => $request->jum_kembali,
             'keterangan' => $request->keterangan,
-            'pegawai_id' => Auth::id()
+            'pengurus_id' => Auth::id()
         ]);
 
         if ($pengembalian) {
@@ -73,7 +61,7 @@ class PengembalianController extends Controller
             'tgl_kembali' => $request->tgl_kembali,
             'jum_kembali' => $request->jum_kembali,
             'keterangan' => $request->keterangan,
-            'pegawai_id' => Auth::id()
+            'pengurus_id' => Auth::id()
         ];
         
         foreach($data as $index => $value){

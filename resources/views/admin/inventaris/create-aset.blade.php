@@ -15,8 +15,8 @@
           <div class="form-group row">
             <label for="nama" class="col-sm-3 col-form-label">NAMA BARANG</label>
             <div class="col-sm-9">
-              <input type="text" name="name" class="form-control" id="nama" value="{{old('name')}}" placeholder="nama">
-              @error('name')
+              <input type="text" name="nama" class="form-control" id="nama" value="{{old('nama')}}" placeholder="nama">
+              @error('nama')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>
@@ -48,29 +48,15 @@
               @enderror
             </div>
           </div>
-
           <div class="form-group row">
-            <label for="jenis" class="col-sm-3 col-form-label">KATEGORI</label>
+            <label for="organisasi" class="col-sm-3 col-form-label">Penanggung Jawab</label>
             <div class="col-sm-9">
-              <select class="form-control" id="jenis" name="jenis">
-                @foreach ($jenis as $item)
-                <option value="{{$item->nama_jenis}}">{{$item->nama_jenis}}</option>
+              <select class="form-control" id="organisasi" name="organisasi">
+                @foreach ($organisasi as $item)
+                <option value="{{$item->id}}">{{$item->nama}}</option>
                 @endforeach
               </select>
-              @error('jenis')
-                <p class="text-danger text-xs mt-2">{{ $message }}</p>
-              @enderror
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="ruang" class="col-sm-3 col-form-label">GUDANG</label>
-            <div class="col-sm-9">
-              <select class="form-control" id="ruang" name="ruang">
-                @foreach ($ruang as $item)
-                <option value="{{$item->nama_ruang}}">{{$item->nama_ruang}}</option>
-                @endforeach
-              </select>
-              @error('ruang')
+              @error('organisasi')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>

@@ -27,9 +27,9 @@ class Peminjaman extends Model
      }
  
      // Relasi ke model Pegawai
-     public function pegawai() : BelongsTo
+     public function pengurus() : BelongsTo
      {
-         return $this->belongsTo(User::class, 'pegawai_id');
+         return $this->belongsTo(User::class, 'pengurus_id');
      }
  
      // Relasi ke model Pengembalian
