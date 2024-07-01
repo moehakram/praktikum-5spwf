@@ -27,6 +27,7 @@ class UpdateInventarisRequest extends FormRequest
             'keterangan' => ['nullable', 'max:30'],
             'stok' => 'nullable',
             'jenis' => 'nullable',
+            'organisasi' => 'nullable',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg'
         ];
     }
