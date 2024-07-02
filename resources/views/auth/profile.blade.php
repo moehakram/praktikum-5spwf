@@ -41,6 +41,7 @@
               @enderror
             </div>
           </div>
+          @role('pegawai')
           <div class="form-group row">
             <label for="organisasi" class="col-sm-3 col-form-label">ORGANISASI</label>
             <div class="col-sm-9">
@@ -50,6 +51,7 @@
               @enderror
             </div>
           </div>
+          @endrole
           <div class="form-group row">
             <label for="nama" class="col-sm-3 col-form-label">NAMA</label>
             <div class="col-sm-9">
