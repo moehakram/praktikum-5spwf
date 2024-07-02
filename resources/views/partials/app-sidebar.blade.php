@@ -1,12 +1,12 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
-    <li class="nav-item">
+    <li class="nav-item {{ Route::currentRouteNamed('home') ? 'active' : '' }}">
       <a class="nav-link" href="{{route('home')}}">
         <i class="icon-grid menu-icon"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item {{ Route::currentRouteNamed('inventaris.index') ? 'active' : '' }}">
       <a class="nav-link" href="{{route('inventaris.index')}}">
         <i class="icon-paper menu-icon"></i>
         <span class="menu-title">Inventaris</span>
@@ -27,13 +27,13 @@
       </div>
     </li>
     {{-- @haspermission('pagePegawai') --}}
-    <li class="nav-item">
+    <li class="nav-item {{ Route::currentRouteNamed('organisasi.index') ? 'active' : '' }}">
       <a class="nav-link" href="{{route('organisasi.index')}}">
         <i class="icon-grid-2 menu-icon"></i>
         <span class="menu-title">Organisasi</span>
       </a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item {{ Route::currentRouteNamed('pegawai.index') ? 'active' : '' }}">
       <a class="nav-link" href="{{route('pegawai.index')}}">
         <i class="icon-head menu-icon"></i>
         <span class="menu-title">Pegawai</span>
