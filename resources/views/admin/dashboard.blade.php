@@ -66,7 +66,7 @@
               <div class="card card-light-danger">
                 <div class="card-body">
                   <p class="mb-4">Jumlah Peminjam belum mengembalikan aset</p>
-                  <p class="fs-30 mb-2">{{$tot_brg_belum_kembali}} orang</p>
+                  <p class="fs-30 mb-2">{{$tot_brg_belum_kembali}}</p>
                   {{-- <p>0.22% (30 days)</p> --}}
                 </div>
               </div>

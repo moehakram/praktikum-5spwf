@@ -22,9 +22,14 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"> <a class="nav-link" href="{{route('peminjaman.index')}}">Peminjaman Aset</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{route('pengembalian.index')}}">Pengembalian Aset</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{route('laporan')}}">Laporan</a></li>
         </ul>
       </div>
+    </li>
+    <li class="nav-item {{ Route::currentRouteNamed('laporan') ? 'active' : '' }}">
+      <a class="nav-link" href="{{route('laporan')}}">
+        <i class="icon-bar-graph menu-icon"></i>
+        <span class="menu-title">Laporan</span>
+      </a>
     </li>
     @haspermission('pagePegawai')
     <li class="nav-item {{ Route::currentRouteNamed('organisasi.index') ? 'active' : '' }}">
