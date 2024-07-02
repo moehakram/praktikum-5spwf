@@ -83,7 +83,7 @@
           </div>
         </div>
         <div class="float-right">
-            <button type="reset" class="btn btn-light">clear</button>
+          <a href="{{route('pegawai.index')}}" class="btn btn-light">cancel</a>
             <button type="submit" class="btn btn-primary mr-2">save</button>
         </div>
       </form>
