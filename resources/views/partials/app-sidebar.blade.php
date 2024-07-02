@@ -26,7 +26,7 @@
         </ul>
       </div>
     </li>
-    {{-- @haspermission('pagePegawai') --}}
+    @haspermission('pagePegawai')
     <li class="nav-item {{ Route::currentRouteNamed('organisasi.index') ? 'active' : '' }}">
       <a class="nav-link" href="{{route('organisasi.index')}}">
         <i class="icon-grid-2 menu-icon"></i>
@@ -39,6 +39,6 @@
         <span class="menu-title">Pegawai</span>
       </a>
     </li>
-    {{-- @endhaspermission --}}
+    @endhaspermission
   </ul>
 </nav>
