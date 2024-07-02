@@ -21,7 +21,7 @@ class DashboardController extends Controller
                 $total_pinjam = Peminjaman::sum('jumlah');
                 $tot_brg_belum_kembali = Peminjaman::doesntHave('pengembalian')->sum('jumlah');
             }else{
-                $total_pinjam = Peminjaman::with(['inventaris', 'pengurus'])->doesntHave('pengembalian')->where('pengurus_id', $id = Auth::id())->sum('jumlah');
+                $total_pinjam = Peminjaman::where('pengurus_id', $id = Auth::id())->sum('jumlah');
                 $tot_brg_belum_kembali = Peminjaman::doesntHave('pengembalian')->where('pengurus_id', $id)->sum('jumlah');
             }
             return view('admin.dashboard', [
