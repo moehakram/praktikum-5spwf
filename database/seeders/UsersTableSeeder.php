@@ -16,9 +16,9 @@ class UsersTableSeeder extends Seeder
     {
        
         User::create([
-            'nra' => '0001',
-            'nama' => 'Ilyas',
-            'email' => 'ilyas@email.com',
+            'nra' => '0000',
+            'nama' => 'admin',
+            'email' => 'admin@email.com',
             'phone_number' => '081234567890',
             'alamat' => 'Jl. Mawar No. 1',
             'organisasi_id' => 1,
@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' => now(),
         ])->assignRole('admin');
         User::create([
-            'nra' => '0002',
+            'nra' => '0001',
             'nama' => 'Rifki',
             'email' => 'rifki@email.com',
             'phone_number' => '081234567890',
@@ -42,9 +42,9 @@ class UsersTableSeeder extends Seeder
             'updated_at' => now(),
         ])->assignRole('pegawai');
         User::create([
-            'nra' => '0003',
-            'nama' => 'admin',
-            'email' => 'admin@email.com',
+            'nra' => '0002',
+            'nama' => 'ilyas',
+            'email' => 'ilyas@email.com',
             'phone_number' => '081234567890',
             'alamat' => 'Jl. Mawar No. 1',
             'organisasi_id' => 1,
@@ -53,7 +53,7 @@ class UsersTableSeeder extends Seeder
             'remember_token' => Str::random(10),
             'created_at' => now(),
             'updated_at' => now(),
-        ])->assignRole('admin');
+        ])->assignRole('pegawai');
       
     }
 }

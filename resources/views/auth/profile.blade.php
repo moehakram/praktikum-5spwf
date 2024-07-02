@@ -35,8 +35,17 @@
           <div class="form-group row">
             <label for="nra" class="col-sm-3 col-form-label">NRA</label>
             <div class="col-sm-9">
-              <input type="text" name="nra" class="form-control" id="nra" value="{{$user->nra}}" readonly placeholder="nomor registrasi anggota">
+              <input type="text" name="nra" class="form-control" id="nra" value="{{$user->nra}}" disabled placeholder="nomor registrasi anggota">
               @error('nra')
+                <p class="text-danger text-xs mt-2">{{ $message }}</p>
+              @enderror
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="organisasi" class="col-sm-3 col-form-label">ORGANISASI</label>
+            <div class="col-sm-9">
+              <input type="text" name="organisasi_id" class="form-control" id="organisasi" value="{{$user->organisasi->nama}}" disabled placeholder="nomor registrasi anggota">
+              @error('organisasi_id')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>

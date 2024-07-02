@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col-12 col-xl-8 mb-4 mb-xl-0">
           <h3 class="font-weight-bold">Dashboard</h3>
-          <h6 class="font-weight-normal mb-5">All systems are running smoothly!</h6>
+          <h6 class="font-weight-normal mb-5" style="text-transform: uppercase">{{$organisasi}}</h6>
         </div>
       </div>
       {{-- isi  --}}
@@ -36,7 +36,7 @@
             <div class="col-md-6 mb-4 stretch-card transparent">
               <div class="card card-tale">
                 <div class="card-body">
-                  <p class="mb-4">Total Pegawai</p>
+                  <p class="mb-4">Total Pengurus Aset {{$organisasi ?? ''}}</p>
                   <p class="fs-30 mb-2">{{$tot_pegawai}}</p>
                   {{-- <p>10.00% (30 days)</p> --}}
                 </div>
@@ -45,8 +45,8 @@
             <div class="col-md-6 mb-4 stretch-card transparent">
               <div class="card card-dark-blue">
                 <div class="card-body">
-                  <p class="mb-4">Total aset dipinjamkan</p>
-                  <p class="fs-30 mb-2">{{$tot_pinjam}}</p>
+                  <p class="mb-4">Jumlah Aset {{$organisasi ?? ''}}</p>
+                  <p class="fs-30 mb-2">{{$jumlah_aset}}</p>
                   {{-- <p>22.00% (30 days)</p> --}}
                 </div>
               </div>
@@ -65,8 +65,8 @@
             <div class="col-md-6 stretch-card transparent">
               <div class="card card-light-danger">
                 <div class="card-body">
-                  <p class="mb-4">Total aset belum kembali</p>
-                  <p class="fs-30 mb-2">{{$tot_brg_belum_kembali}}</p>
+                  <p class="mb-4">Jumlah Peminjam belum mengembalikan aset</p>
+                  <p class="fs-30 mb-2">{{$tot_brg_belum_kembali}} orang</p>
                   {{-- <p>0.22% (30 days)</p> --}}
                 </div>
               </div>
