@@ -34,10 +34,10 @@
           @csrf
           @method('put')
           <div class="form-group row">
-            <label for="nip" class="col-sm-3 col-form-label">NIS</label>
+            <label for="nra" class="col-sm-3 col-form-label">NRA</label>
             <div class="col-sm-9">
-              <input type="text" name="nip" class="form-control" id="nip" value="{{$nip}}" readonly placeholder="nomor induk">
-              @error('nip')
+              <input type="text" name="nra" class="form-control" id="nra" value="{{$nra}}" readonly placeholder="nomor registrasi anggota">
+              @error('nra')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>

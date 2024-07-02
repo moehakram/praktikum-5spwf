@@ -52,8 +52,8 @@ class AuthController extends Controller
 
         $user = Auth::user();
 
-        if($data['name']){
-            $user->name = $data['name'];
+        if($data['nama']){
+            $user->nama = $data['nama'];
         }
 
         if(!empty($data['email']) && !User::where('email', $data['email'])->exists()){
@@ -76,8 +76,8 @@ class AuthController extends Controller
 
     function password()
     {
-        $nip = Auth::user()->nip;
-        return view('auth.password', compact('nip'));
+        $nra = Auth::user()->nra;
+        return view('auth.password', compact('nra'));
     }
 
     function updatePassword(Request $request)

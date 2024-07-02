@@ -60,7 +60,7 @@ class UserController extends Controller
             $user->nama = $data['nama'];
         }
 
-        if($data['email']){
+        if(!empty($data['email']) && !User::where('email', $data['email'])->exists()){
             $user->email = $data['email'];
         }
 
