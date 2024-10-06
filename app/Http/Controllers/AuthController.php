@@ -25,7 +25,7 @@ class AuthController extends Controller
     
         $credentials = $request->only('username', 'password');
     
-        $loginType = filter_var($credentials['username'], FILTER_VALIDATE_EMAIL) ? 'email' : 'nip';
+        $loginType = filter_var($credentials['username'], FILTER_VALIDATE_EMAIL) ? 'email' : 'nra';
         $credentials[$loginType] = $credentials['username'];
         unset($credentials['username']);
     
