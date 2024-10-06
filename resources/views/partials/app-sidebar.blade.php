@@ -6,7 +6,7 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
-    <li class="nav-item {{ Route::currentRouteNamed('inventaris.index') ? 'active' : '' }}">
+    <li class="nav-item {{ (Request::is('inventaris', 'inventaris/*') ? 'active' : '') }}">
       <a class="nav-link" href="{{route('inventaris.index')}}">
         <i class="icon-paper menu-icon"></i>
         <span class="menu-title">Inventaris</span>
