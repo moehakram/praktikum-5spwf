@@ -29,7 +29,10 @@ class PengembalianController extends Controller
         // Menggunakan model Peminjaman untuk mencari data
         $peminjaman = Peminjaman::with('inventaris')->find($peminjamanId);
         if ($peminjaman) {
-            return response()->json(['nama_barang' => $peminjaman->inventaris->nama]);
+            return response()->json([
+                'nama_barang' => $peminjaman->inventaris->nama,
+                'jumlahPinjam' => $peminjaman->jumlah
+            ]);
         } else {
             return response()->json(['nama_barang' => ''], 404);
         }
@@ -48,6 +51,11 @@ class PengembalianController extends Controller
 
     function store(CreatePengembalianRequest $request){
 
+        $peminjaman = Peminjaman::find($request->peminjaman_id);
+        $peminjaman->update([
+            'status_pengembalian' => true
+        ]);
+        
         Pengembalian::create([
             'peminjaman_id' => $request->peminjaman_id,
             'tanggal' => $request->tanggal,

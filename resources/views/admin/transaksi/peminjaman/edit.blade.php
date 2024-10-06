@@ -32,7 +32,7 @@
           <div class="col-sm-9">
             <select class="form-control" id="nama_barang" name="inventaris_id">
               @foreach ($aset as $row)
-              <option value="{{$row->id}}"   >{{$row->nama}}</option>
+              <option value="{{$row->id}}" {{ $row->nama == $peminjaman->nama_barang ? 'selected' : '' }}>{{$row->nama}}</option>
               @endforeach
             </select>
             @error('inventaris_id')

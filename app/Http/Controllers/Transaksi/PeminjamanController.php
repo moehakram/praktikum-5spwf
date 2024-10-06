@@ -23,14 +23,32 @@ class PeminjamanController extends Controller
 
     function create()
     {
-        $aset = Aset::doesntHave('peminjaman')->get(['id', 'nama']);
+        $aset = Aset::distinct()->get(['id', 'nama']);
+
+        $aset = $aset->filter(function ($data) {
+            $jumlahPinjam = Peminjaman::where('nama_barang', $data->nama)->where('status_pengembalian', false)->sum('jumlah');
+            $jumlahBarang = Aset::where('nama', $data->nama)->sum('stok');
+            
+            // Jika jumlah barang lebih besar dari atau sama dengan jumlah pinjaman, item tetap dalam koleksi
+            return $jumlahBarang > $jumlahPinjam;
+        });
+        
         return view('admin.transaksi.peminjaman.create', compact('aset'));
     }
 
     function store(CreatePeminjamanRequest $request)
     {
+
+        $nmbarang = Aset::where('id', $request->inventaris_id)->first('nama');
+        $jumlahBarang = Aset::where('nama', $nmbarang->nama)->sum('stok');
+
+        $dipinjam = Peminjaman::where('inventaris_id', $request->inventaris_id)->where('status_pengembalian', false)->sum('jumlah');
+
+        if(($jumlahBarang - $dipinjam) < $request->jumlah) return redirect()->back()->with('alert', 'info')->with('message', 'Barang yang mau dipinjam tidak cukup');
+
         Peminjaman::create([
             'nama' => $request->nama,
+            'nama_barang' => $nmbarang->nama,
             'inventaris_id' => $request->inventaris_id,
             'tanggal' => $request->tanggal,
             'jumlah' => $request->jumlah,
@@ -44,9 +62,17 @@ class PeminjamanController extends Controller
     function edit($id)
     {
         $peminjaman = Peminjaman::with(['inventaris', 'pengurus'])
-                ->where('id', $id)->first();
-        // $inventaris = Aset::all(['id', 'nama']);
-        $aset = Aset::doesntHave('peminjaman')->get(['id', 'nama']);
+            ->where('id', $id)->first();
+
+        $aset = Aset::distinct()->get(['id', 'nama']);
+
+        $aset = $aset->filter(function ($data) use($peminjaman) {
+            $jumlahPinjam = Peminjaman::where('nama_barang', $data->nama)->where('status_pengembalian', false)->sum('jumlah');
+            $jumlahBarang = Aset::where('nama', $data->nama)->sum('stok');
+            
+            // Jika jumlah barang lebih besar dari atau sama dengan jumlah pinjaman, item tetap dalam koleksi
+            return ($jumlahBarang > $jumlahPinjam) || ($data->nama == $peminjaman->nama_barang);
+        });
         
         return view('admin.transaksi.peminjaman.edit', [
             'peminjaman' => $peminjaman,
@@ -58,8 +84,19 @@ class PeminjamanController extends Controller
     {
 
         $peminjaman = Peminjaman::where('id', $id)->first();
+
+        $nmbarang = Aset::where('id', $request->inventaris_id)->first('nama');
+        $jumlahBarang = Aset::where('nama', $nmbarang->nama)->sum('stok');
+
+        $dipinjam = Peminjaman::where('inventaris_id', $request->inventaris_id)->where('status_pengembalian', false)->sum('jumlah');
+
+        if($peminjaman->nama_barang == $nmbarang->nama) $dipinjam = $dipinjam - $peminjaman->jumlah;
+
+        if(($jumlahBarang - $dipinjam) < $request->jumlah) return redirect()->back()->with('alert', 'info')->with('message', 'Barang yang mau dipinjam tidak cukup');
+
         $data = [
             'nama' => $request->nama,
+            'nama_barang' => $nmbarang->nama,
             'inventaris_id' => $request->inventaris_id,
             'tanggal' => $request->tanggal,
             'jumlah' => $request->jumlah,

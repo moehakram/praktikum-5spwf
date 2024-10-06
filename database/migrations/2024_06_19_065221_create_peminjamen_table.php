@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('inventaris_id');
             $table->string('nama');
+            $table->string('nama_barang');
             $table->date('tanggal');
             $table->integer('jumlah');
             $table->string('keterangan')->nullable();
+            $table->boolean('status_pengembalian')->default(false);
             $table->unsignedBigInteger('pengurus_id');
             $table->timestamps();
         

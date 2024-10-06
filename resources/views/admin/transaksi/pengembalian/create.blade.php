@@ -55,7 +55,7 @@
         <div class="form-group row">
           <label for="jumlah" class="col-sm-3 col-form-label">JUMLAH KEMBALI</label>
           <div class="col-sm-9">
-            <input type="number" name="jumlah" class="form-control" id="jumlah" value="{{old('jumlah')}}" placeholder="jumlah kembali">
+            <input type="number" name="jumlah" class="form-control" id="jumlah" value="{{old('jumlah')}}" placeholder="jumlah kembali" readonly>
             @error('jumlah')
               <p class="text-danger text-xs mt-2">{{ $message }}</p>
             @enderror
@@ -106,7 +106,9 @@ $(document).ready(function() {
                 type: 'POST',
                 data: { peminjaman_id: peminjamanId},
                 success: function(response) {
-                    $('#inventaris_id').val(response.nama_barang);
+                  console.log('asdas');
+                  $('#inventaris_id').val(response.nama_barang);
+                  $('#jumlah').val(response.jumlahPinjam);
                 },
                 error: function(xhr) {
                     console.log(xhr.responseText); // Untuk debug jika terjadi kesalahan
