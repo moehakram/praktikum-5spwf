@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePeminjamanRequest;
 use App\Models\Aset;
 use App\Models\Peminjaman;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PeminjamanController extends Controller
 {
@@ -23,7 +24,9 @@ class PeminjamanController extends Controller
 
     function create()
     {
-        $aset = Aset::distinct()->get(['id', 'nama']);
+        $aset = Aset::select(DB::raw('MIN(id) as id'), 'nama')->groupBy('nama')->get();
+
+        // dd($aset);
 
         $aset = $aset->filter(function ($data) {
             $jumlahPinjam = Peminjaman::where('nama_barang', $data->nama)->where('status_pengembalian', false)->sum('jumlah');
@@ -64,7 +67,7 @@ class PeminjamanController extends Controller
         $peminjaman = Peminjaman::with(['inventaris', 'pengurus'])
             ->where('id', $id)->first();
 
-        $aset = Aset::distinct()->get(['id', 'nama']);
+        $aset = Aset::select(DB::raw('MIN(id) as id'), 'nama')->groupBy('nama')->get();
 
         $aset = $aset->filter(function ($data) use($peminjaman) {
             $jumlahPinjam = Peminjaman::where('nama_barang', $data->nama)->where('status_pengembalian', false)->sum('jumlah');
