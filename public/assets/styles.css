@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: auto;
+    padding: 20px;
+    color: #333;
+    background-color: #f2f0f0;
+    width: 60%;
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: #fff;
+}
+
+thead tr {
+    background-color: blue;
+    color: #fff;
+    text-align: left;
+}
+
+thead th {
+    padding: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+tbody tr:hover {
+    background-color: #e8f0fe;
+    transition: background-color 0.3s ease;
+}
