@@ -23,7 +23,7 @@
                     <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
                   </div> --}}
                   <div class="ml-2">
-                    <h4 class="location font-weight-normal">SMA NEGERI 7 MAKASSAR</h4>
+                    <h4 class="location font-weight-normal">APLIKASI INVENTARIS</h4>
                     {{-- <h6 class="font-weight-normal">//</h6> --}}
                   </div>
                 </div>

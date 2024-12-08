@@ -39,6 +39,17 @@ class AuthController extends Controller
         ]);
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
+    }
+
     function profile()
     {
         $user = Auth::user();
@@ -101,16 +112,5 @@ class AuthController extends Controller
 
         return redirect()->route('home')
         ->with('alert', 'success')->with('message', 'Berhasil update password');
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect()->route('login');
     }
 }

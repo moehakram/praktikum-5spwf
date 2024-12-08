@@ -18,9 +18,9 @@ class UsersTableSeeder extends Seeder
         User::create([
             'nra' => '0000',
             'nama' => 'admin',
-            'email' => 'admin@email.com',
+            'email' => 'admin@mail.com',
             'phone_number' => '081234567890',
-            'alamat' => 'Jl. Mawar No. 1',
+            'alamat' => 'Jl. Perintis 7',
             'organisasi_id' => 1,
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
@@ -30,30 +30,16 @@ class UsersTableSeeder extends Seeder
         ])->assignRole('admin');
         User::create([
             'nra' => '0001',
-            'nama' => 'Rifki',
-            'email' => 'rifki@email.com',
+            'nama' => 'akram',
+            'email' => 'akram@mail.com',
             'phone_number' => '081234567890',
-            'alamat' => 'Jl. Mawar No. 1',
+            'alamat' => 'Jl. Perintis 7',
             'organisasi_id' => 2,
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
             'created_at' => now(),
             'updated_at' => now(),
-        ])->assignRole('pegawai');
-        User::create([
-            'nra' => '0002',
-            'nama' => 'ilyas',
-            'email' => 'ilyas@email.com',
-            'phone_number' => '081234567890',
-            'alamat' => 'Jl. Mawar No. 1',
-            'organisasi_id' => 1,
-            'email_verified_at' => now(),
-            'password' => Hash::make('password'),
-            'remember_token' => Str::random(10),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ])->assignRole('pegawai');
-      
+        ])->assignRole('pegawai');      
     }
 }
