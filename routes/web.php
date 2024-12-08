@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->name('home');
 
-Route::get('home', fn()=> redirect('/'));
+Route::redirect('home', '/');
 
 Route::controller(AuthController::class)->group(function(){
 
