@@ -30,31 +30,22 @@
                   <img class="mb-2" src="{{ asset('images/logo-new.png') }}" alt="logo">
                   <h4>LOGIN APP INVENTARIS</h4>
               </div>
-              
               @error('error')
                   <h6 class="font-weight-light text-danger">{{ $message }}</h6>
               @enderror
+              
               <form class="pt-3" method="POST" action="{{ route('login') }}" autocomplete="off">
                   @csrf
                   <div class="form-group">
-                      <input type="text" autocomplete="off" name="username" class="form-control form-control-lg" id="username" placeholder="username" required autofocus>
-                  </div>
-                  <div class="form-group">
-                      <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Password" required>
+                      <input type="text" autocomplete="off" name="username" class="form-control form-control-lg" id="username" placeholder="Username" autofocus>
+                      <h6 class="font-weight-light text-danger">@error('username') {{ $message }} @enderror</h6>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="password" class="form-control form-control-lg" id="password" placeholder="Password">
+                      <h6 class="font-weight-light text-danger">@error('password') {{ $message }} @enderror</h6>
                   </div>
                   <div class="mt-3">
                       <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
-                  </div>
-                  <div class="my-2 d-flex justify-content-between align-items-center">
-                      <div class="form-check">
-                          <input type="checkbox" class="form-check-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                          <label class="form-check-label text-muted" for="remember">
-                              Keep me signed in
-                          </label>
-                      </div>
-                      @if (Route::has('password.request'))
-                          <a href="{{ route('password.request') }}" class="auth-link text-black">Forgot password?</a>
-                      @endif
                   </div>
               </form>
           </div>

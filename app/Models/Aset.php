@@ -10,12 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Aset extends Model
 {
     use HasFactory;
-    protected $table = 'inventaris';
-    protected $primaryKey = 'id';
-    protected $keyType = 'int';
-    public $timestamps = true;
-    public $incrementing = true;
-    
+    protected $table = 'inventaris';    
 
     protected  $guarded = ['id'];
 

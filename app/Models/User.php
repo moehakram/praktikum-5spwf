@@ -15,10 +15,6 @@ class User extends Authenticatable
     use HasFactory, Notifiable, HasRoles;
 
     protected $table = 'pengurus';
-    protected $primaryKey = 'id';
-    protected $keyType = 'int';
-    public $timestamps = true;
-    public $incrementing = true;
     /**
      * The attributes that are mass assignable.
      *

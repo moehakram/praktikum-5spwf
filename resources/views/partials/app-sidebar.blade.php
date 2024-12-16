@@ -7,7 +7,7 @@
       </a>
     </li>
     <li class="nav-item {{ (Request::is('inventaris', 'inventaris/*') ? 'active' : '') }}">
-      <a class="nav-link" href="{{route('inventaris.index')}}">
+      <a class="nav-link" href="#">
         <i class="icon-paper menu-icon"></i>
         <span class="menu-title">Inventaris</span>
       </a>
@@ -20,13 +20,13 @@
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{{route('peminjaman.index')}}">Peminjaman Aset</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{{route('pengembalian.index')}}">Pengembalian Aset</a></li>
+          <li class="nav-item"> <a class="nav-link" href="#">Peminjaman Aset</a></li>
+          <li class="nav-item"> <a class="nav-link" href="#">Pengembalian Aset</a></li>
         </ul>
       </div>
     </li>
     <li class="nav-item {{ Route::currentRouteNamed('laporan') ? 'active' : '' }}">
-      <a class="nav-link" href="{{route('laporan')}}">
+      <a class="nav-link" href="#">
         <i class="icon-bar-graph menu-icon"></i>
         <span class="menu-title">Laporan</span>
       </a>

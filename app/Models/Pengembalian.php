@@ -11,10 +11,6 @@ class Pengembalian extends Model
     use HasFactory;
 
     protected $table = 'pengembalian';
-    protected $primaryKey = 'id';
-    protected $keyType = 'int';
-    public $timestamps = true;
-    public $incrementing = true;
 
     protected $guarded = ['id'];
 

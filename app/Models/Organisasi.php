@@ -11,10 +11,6 @@ class Organisasi extends Model
     use HasFactory;
 
     protected $table = 'organisasi';
-    protected $primaryKey = 'id';
-    protected $keyType = 'int';
-    public $timestamps = true;
-    public $incrementing = true;
 
     protected $guarded = ['id'];
 

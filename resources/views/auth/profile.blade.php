@@ -28,8 +28,8 @@
              {{-- create --}}
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title">My Profile</h3>
-        <form class="forms-sample" method="POST" action="{{route('profile.update')}}">
+        <h3 class="card-title">Informasi Akun</h3>
+        <form class="forms-sample" method="POST" action="#">
           @csrf
           @method('put')
           <div class="form-group row">
@@ -55,7 +55,7 @@
           <div class="form-group row">
             <label for="nama" class="col-sm-3 col-form-label">NAMA</label>
             <div class="col-sm-9">
-              <input type="text" name="nama" class="form-control" id="nama" value="{{$user->nama}}" placeholder="nama">
+              <input type="text" name="nama" readonly class="form-control" id="nama" value="{{$user->nama}}" placeholder="nama">
               @error('nama')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
@@ -64,7 +64,7 @@
           <div class="form-group row">
             <label for="email" class="col-sm-3 col-form-label">EMAIL</label>
             <div class="col-sm-9">
-              <input type="email" name="email" class="form-control" id="email" value="{{$user->email}}" placeholder="Email">
+              <input type="email" name="email" readonly class="form-control" id="email" value="{{$user->email}}" placeholder="Email">
               @error('email')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
@@ -73,7 +73,7 @@
           <div class="form-group row">
             <label for="phone_number" class="col-sm-3 col-form-label">Nomor Telepon</label>
             <div class="col-sm-9">
-              <input type="number" name="phone_number" class="form-control" id="phone_number" value="{{$user->phone_number}}" placeholder="nomor telepon">
+              <input type="number" name="phone_number" readonly class="form-control" id="phone_number" value="{{$user->phone_number}}" placeholder="nomor telepon">
               @error('phone_number')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
@@ -82,15 +82,14 @@
           <div class="form-group row">
             <label for="alamat" class="col-sm-3 col-form-label">ALAMAT</label>
             <div class="col-sm-9">
-              <input type="text" name="alamat" class="form-control" id="alamat" value="{{$user->alamat}}" placeholder="alamat">
+              <input type="text" name="alamat" readonly class="form-control" id="alamat" value="{{$user->alamat}}" placeholder="alamat">
               @error('alamat')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
               @enderror
             </div>
           </div>
           <div class="float-right">
-              <a type="button" href="{{route('home')}}" class="btn btn-light">cancel</a>
-              <button type="submit" class="btn btn-primary mr-2">save</button>
+              <a type="button" href="{{route('home')}}" class="btn btn-primary">kembali</a>
           </div>
         </form>
       </div>
